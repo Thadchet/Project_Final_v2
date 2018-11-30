@@ -4,16 +4,16 @@ import javafx.scene.image.Image;
 
 public class Wizard extends Entity {
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
-	public Wizard() {
-        setImage(image_path+"hammer.png");
+	public Wizard(int x , int y , int width , int height) {
+        setImage(image_path+"wizard1.gif",width,height);
 		
-		this.setPosition(300, 700);
+		this.setPosition(x,y);
 	
 	}
 	
 	@Override
-	public void setImage(String filename) {
-		Image i = new Image(filename,80,80,false,false);
+	public void setImage(String filename,int width ,int height) {
+		Image i = new Image(filename,width,height,false,false);
         setImage(i);
 	}
 

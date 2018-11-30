@@ -26,24 +26,17 @@ public class GameWindow  {
 	public boolean spaceRepeat = false;
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
 	
+	
 	public GameWindow(Stage theStage) {
-
-		theStage.setTitle("Space Adventure!");
-
-		Group root = new Group();
-
-		Scene theScene = new Scene(root);
-
-		theStage.setScene(theScene);
-
-		Canvas canvas = new Canvas(550, 750);
-
-		root.getChildren().add(canvas);
+		Group pane = new Group();
+		Scene scene = new Scene(pane);
+		
+		GraphicsContext gc = StartWindow.gc ;
 
 		ArrayList<String> input = new ArrayList<String>();
 		ArrayList<String> strings = new ArrayList<String>();
 
-		theScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
 				String code = e.getCode().toString();
 				String s = "" ;
@@ -58,7 +51,7 @@ public class GameWindow  {
 			}
 		});
 
-		theScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
 				String code = e.getCode().toString();
 
@@ -69,9 +62,7 @@ public class GameWindow  {
 			}
 		});
 
-		Background bg = new Background();
-
-		GraphicsContext gc = canvas.getGraphicsContext2D();
+		Background bg = new Background(0,0);
 
 		Font theFont = Font.font("Helvetica", FontWeight.BOLD, 24);
 		gc.setFont(theFont);
@@ -86,13 +77,13 @@ public class GameWindow  {
 
 		IntValue score = new IntValue(0);
 
-		Wizard wizard = new Wizard();
+		Wizard wizard = new Wizard(300,700,40,40);
 
 		ArrayList<Word> wordList = new ArrayList<Word>();
 
 		for (int i = 0; i < 15; i++) {
-			Word word = new Word();
-			word.setImage(image_path+"hammer.png");
+			Word word = new Word(60,60);
+			word.setImage(image_path+"rock.png",60,60);
 
 			double px = 600 * Math.random();
 			double py = -900 * Math.random();

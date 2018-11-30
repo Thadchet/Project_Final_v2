@@ -3,8 +3,9 @@ package Logic;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import sharedObject.IRenderable;
 
-public abstract class Entity {
+public abstract class Entity implements IRenderable{
 	
 	protected Image image;
 	protected double x,y,width,height,xspeed,yspeed;
@@ -24,7 +25,7 @@ public abstract class Entity {
 
 	public abstract void setImage(Image i);
 
-	public abstract void setImage(String filename);
+	public abstract void setImage(String filename,int width , int height);
 	
 	public boolean isDestroyed(){
 		return destroyed;
