@@ -91,37 +91,20 @@ public class StartWindow {
 		intro = new AudioClip(sound_path+"intro.mp3");
 		intro.play();
 	}
-	
-	public void test() {
-		AnimationTimer test = new AnimationTimer() {
-			
-			@Override
-			public void handle(long arg0) {
-				// TODO Auto-generated method stub
-				setBgTest();
-			}
-		};
-		test.start();
+	public void next() {
 		animation.stop();
 		soundanimation.stop();
 		intro.stop();
+		
 	}
 	
-	public void setBgTest() {
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		Image bg = new Image(image_path+"3.jpg");
-		//gc.fillRect(0, 0, 300, 300);
-		Image wizard = new Image(image_path+"wizard2.gif");
-		gc.drawImage(bg, 0, 0);
-		gc.drawImage(wizard, 100, 150);
-		setText(gc);
-	}
+	
 	
 	public void addEvent() {
 		scene.setOnKeyPressed((KeyEvent e) -> {
 			System.out.println(e.getCode());
 			if(e.getCode().equals(KeyCode.UP)) {
-				test();
+				next();
 			}
 		});
 	}

@@ -1,29 +1,26 @@
 package Logic;
 
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
-public class Wizard extends CollidableEntity {
-	private static final int speed = 5;
+public class Wizard extends Entity {
+	public String image_path = ClassLoader.getSystemResource("image/").toString();
+	public Wizard() {
+        setImage(image_path+"hammer.png");
+		
+		this.setPosition(300, 700);
 	
-	public Wizard(double x , double y) {
-		this.x = x ;
-		this.y = y;
 	}
 	
-	public void Left() {
-		this.x -= this.speed ;
+	@Override
+	public void setImage(String filename) {
+		Image i = new Image(filename,80,80,false,false);
+        setImage(i);
 	}
-	
-	public void Right() {
-		this.x += this.speed ;
-	}
-	
-	
-	
 
 	@Override
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		
+	public void setImage(Image i) {
+		image = i;
+        width = i.getWidth();
+        height = i.getHeight();
 	}
 }
