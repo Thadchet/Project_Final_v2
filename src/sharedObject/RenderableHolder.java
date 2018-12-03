@@ -6,48 +6,65 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import Logic.Word;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.media.AudioClip;
 
 
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 	private List<IRenderable> entities ;
-	private Comparator<IRenderable> comparator ;
-	public static AudioClip switchmenu ;
-	public static AudioClip soundbg ;
+	public static AudioClip fall ;
+	public static AudioClip menu ;
+	public String image_path = ClassLoader.getSystemResource("image/").toString();
+	public static String sound_path = ClassLoader.getSystemResource("sound/").toString();
 	static {
 		loadResource();
 	}
 	public RenderableHolder() {
 		entities = new ArrayList<IRenderable>();
-		comparator = (IRenderable o1 , IRenderable o2) -> {
-			if(o1.getZ() > o2.getZ()) 
-				return 1 ;
-			return -1 ;
-		};
 		
 	}
 	public static void loadResource() {
+		
+		menu = new AudioClip(sound_path+"switch.mp3");
+		fall = new AudioClip(sound_path+"fall.mp3");
+		//explosionSound = new AudioClip(ClassLoader.getSystemResource("Explosion.wav").toString());
 
-		switchmenu = new AudioClip(ClassLoader.getSystemResource("res/sound/switch.mp3").toString());
-//		soundbg = new AudioClip(ClassLoader.getSystemResource("sound/intro.mp3").toString());
-		
-		
 	}
 	public void add(IRenderable entity) {
 		System.out.println("add");
 		entities.add(entity);
-		Collections.sort(entities,comparator);
 	}
 	public void update() {
 		for(int i = entities.size() -1 ; i >= 0 ; i--) {
 			if(entities.get(i).isDestroyed()) {
+				fall.play();
 				entities.remove(i);
 			}
 		}
 	}
+	
+	public void draw(GraphicsContext gc) {
+		for(int i = 0 ; i < entities.size() ; i++) {
+			entities.get(i).draw(gc);
+		}
+	}
 	public static RenderableHolder getInstance() {
 		return instance ;
+	}
+	
+	public void updatePos() {
+		for(IRenderable i : entities) {
+			if(i instanceof Word) {
+				((Word) i).updatePos(-1);
+				if(((Word) i).getY() > 400) {
+					((Word) i).setIsvisible(false);
+					((Word) i).setIsdestory(true);
+				}
+			}
+			
+		}
 	}
 	
 }

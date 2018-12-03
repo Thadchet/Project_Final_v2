@@ -1,5 +1,6 @@
 package Logic;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Wizard extends Entity {
@@ -23,4 +24,24 @@ public class Wizard extends Entity {
         width = i.getWidth();
         height = i.getHeight();
 	}
+
+	@Override
+	public void draw(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		gc.drawImage(image, x, y);
+	}
+
+	@Override
+	public boolean isDestroyed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isVisible() {
+		// TODO Auto-generated method stub
+		return true ;
+	}
+
+	
 }

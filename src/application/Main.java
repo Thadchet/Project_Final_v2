@@ -34,7 +34,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class Main extends Application {
-	public String image_path = ClassLoader.getSystemResource("image/").toString();
+	
 
 	@Override
 	public void start(Stage stage) {

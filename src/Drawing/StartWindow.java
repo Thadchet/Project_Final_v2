@@ -5,6 +5,7 @@ import Logic.Wizard;
 import input.InputUtility;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -27,18 +28,17 @@ public class StartWindow {
 	public static GraphicsContext gc;
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
 	public String sound_path = ClassLoader.getSystemResource("sound/").toString();
-	public AudioClip menu = new AudioClip(sound_path + "switch.mp3");
 	private AnimationTimer animation;
 	private AnimationTimer soundanimation;
 	private Stage primarystage;
 	private Canvas canvas;
 	public AudioClip intro;
-	public Scene scene;
+	static Scene scene;
 	private Wizard wizard; 
-	static Background bg;
+	private Background background ;
 	private boolean isframeUp = true;
 	private int numberselected = 1;
-	private GameWindow gamewindow ;
+	static StackPane pane ;
 	
 
 	public StartWindow(Stage primarystage) {
@@ -47,15 +47,14 @@ public class StartWindow {
 		gc = canvas.getGraphicsContext2D();
 		intro = new AudioClip(sound_path + "intro.mp3");
 		wizard = new Wizard();
-		bg = new Background(0, 0);
-		gamewindow  = new GameWindow(primarystage);
+		background = new Background(0, 0);
+
 	}
 
 	public void setBackground() {
-		// gc.setFill(Color.BLUE)
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		bg.render(gc);
-		wizard.render(gc);
+		
+		background.draw(gc);
+		wizard.draw(gc);
 		gc.setLineWidth(2);
 		gc.setFill(Color.WHITE);
 		gc.setStroke(Color.YELLOW);
@@ -87,7 +86,7 @@ public class StartWindow {
 	}
 
 	public void draw(GraphicsContext gc) {
-		StackPane pane = new StackPane();
+		pane = new StackPane();
 		pane.setPrefSize(550, 750);
 		pane.getChildren().addAll(canvas);
 		scene = new Scene(pane);
@@ -147,22 +146,25 @@ public class StartWindow {
 		animation.stop();
 		soundanimation.stop();
 		intro.stop();
-		gamewindow.startanimation();
+		GameWindow gamewindow  = new GameWindow(primarystage);
+		gamewindow.drawGameWindow();
 		
 	}
 
 	public void addAction() {
 		scene.setOnKeyPressed((KeyEvent) -> {
 			if (KeyEvent.getCode() == KeyCode.DOWN) {
+				System.out.println("Down");
 				if (numberselected != 0) {
-					menu.play();
+					RenderableHolder.menu.play();
 					numberselected--;
 				}
 				this.isframeUp = false;
 			}
 			if (KeyEvent.getCode() == KeyCode.UP) {
+				System.out.println("Up");
 				if (numberselected != 1) {
-					menu.play();
+					RenderableHolder.menu.play();
 					numberselected++;
 				}
 				this.isframeUp = true;
@@ -175,7 +177,7 @@ public class StartWindow {
 				}
 			}
 		});
-
+		
 	}
 
 	public GraphicsContext getGc() {
