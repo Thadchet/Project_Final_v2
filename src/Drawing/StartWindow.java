@@ -46,7 +46,7 @@ public class StartWindow {
 		this.primarystage = primarystage;
 		gc = canvas.getGraphicsContext2D();
 		intro = new AudioClip(sound_path + "intro.mp3");
-		wizard = new Wizard(300, 500, 200, 200);
+		wizard = new Wizard();
 		bg = new Background(0, 0);
 		gamewindow  = new GameWindow(primarystage);
 	}

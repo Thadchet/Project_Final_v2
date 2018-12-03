@@ -6,8 +6,8 @@ public class Word extends Entity {
 	private String wordstring = "a";
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
 	
-	public Word(int width ,int height) {
-		setImage(image_path+"rock.png",width ,height);
+	public Word() {
+		setImage(image_path+"rock.png", 100,100);
 
 		this.setPosition(300, 50);
 	}

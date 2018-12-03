@@ -4,10 +4,10 @@ import javafx.scene.image.Image;
 
 public class Wizard extends Entity {
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
-	public Wizard(int x , int y , int width , int height) {
-        setImage(image_path+"wizard1.gif",width,height);
+	public Wizard() {
+        setImage(image_path+"wizard1.gif",200,200);
 		
-		this.setPosition(x,y);
+		this.setPosition(300,500);
 	
 	}
 	

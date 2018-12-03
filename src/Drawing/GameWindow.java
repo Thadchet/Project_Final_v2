@@ -49,7 +49,7 @@ public class GameWindow {
 	public void draw(GraphicsContext gc) {
 		LongValue lastNanoTime = new LongValue(System.nanoTime());
 		IntValue score = new IntValue(0);
-		Wizard wizard = new Wizard(300,700,40,40);
+		Wizard wizard = new Wizard();
 		gameAnimation = new AnimationTimer() {
 			public void handle(long currentNanoTime) {
 				// calculate time since last update.
@@ -151,7 +151,7 @@ public class GameWindow {
 	}
 	public void storeWord() {
 		for (int i = 0; i < 35; i++) {
-			Word word = new Word(60,60);
+			Word word = new Word();
 			word.setImage(image_path+"rock.png",60,60);
 
 			double px = 600 * Math.random();
