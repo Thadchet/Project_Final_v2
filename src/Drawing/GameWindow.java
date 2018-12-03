@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import sharedObject.IRenderable;
@@ -16,6 +17,7 @@ import sharedObject.RenderableHolder;
 public class GameWindow extends Canvas {
 	private static AnimationTimer gamewindowanimation ;
 	private ArrayList<Word> wordList = new ArrayList<>();
+	private String temp = "" ;
 	private GameScreen gamescreen ;
 	private Word word ;
 	private GraphicsContext gc ;
@@ -33,7 +35,7 @@ public class GameWindow extends Canvas {
 		scene = new Scene(pane);
 		this.stage.setScene(scene);
 		addAll();
-		
+		requestFocus();
 	}
 	public void drawGameWindow() {
 		addEvent(gc);
@@ -53,7 +55,14 @@ public class GameWindow extends Canvas {
 	}
 	public void addEvent(GraphicsContext gc) {
 		this.setOnKeyPressed((KeyEvent) ->{
-			System.out.println(KeyEvent.getCode().toString());
+			if(!KeyEvent.getCode().equals(KeyCode.ENTER)) {
+				temp += KeyEvent.getCode().toString();
+			}
+			else {
+				System.out.println(temp);
+				RenderableHolder.getInstance().check(temp);	
+				temp = "" ;
+			}
 		});
 	}
 	public void addGamescreen() {

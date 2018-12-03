@@ -34,12 +34,11 @@ public class StartWindow {
 	private Canvas canvas;
 	public AudioClip intro;
 	static Scene scene;
-	private Wizard wizard; 
-	private Background background ;
+	private Wizard wizard;
+	private Background background;
 	private boolean isframeUp = true;
 	private int numberselected = 1;
-	static StackPane pane ;
-	
+	static StackPane pane;
 
 	public StartWindow(Stage primarystage) {
 		canvas = new Canvas(550, 750);
@@ -52,7 +51,7 @@ public class StartWindow {
 	}
 
 	public void setBackground() {
-		
+
 		background.draw(gc);
 		wizard.draw(gc);
 		gc.setLineWidth(2);
@@ -146,9 +145,9 @@ public class StartWindow {
 		animation.stop();
 		soundanimation.stop();
 		intro.stop();
-		GameWindow gamewindow  = new GameWindow(primarystage);
+		GameWindow gamewindow = new GameWindow(primarystage);
 		gamewindow.drawGameWindow();
-		
+
 	}
 
 	public void addAction() {
@@ -177,7 +176,7 @@ public class StartWindow {
 				}
 			}
 		});
-		
+
 	}
 
 	public GraphicsContext getGc() {

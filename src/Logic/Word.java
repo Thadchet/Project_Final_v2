@@ -6,12 +6,13 @@ import javafx.scene.image.Image;
 public class Word extends Entity {
 	private String wordstring = "a";
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
-	private boolean isVisible = true ;
-	private boolean isDestory = false ;
+	private boolean isVisible = true;
+	private boolean isDestory = false;
+
 	public Word() {
 		setImage(image_path + "rock.png", 100, 100);
-		
-		//this.setPosition(300, 50);
+
+		// this.setPosition(300, 50);
 	}
 
 	public String getWordstring() {
@@ -36,8 +37,8 @@ public class Word extends Entity {
 	}
 
 	public void updatePos(double time) {
-		setPosition(getX(),getY()-time);
-		System.out.println(getY());
+		setPosition(getX(), getY() - time);
+		//System.out.println(getY());
 	}
 
 	@Override
@@ -49,20 +50,21 @@ public class Word extends Entity {
 	@Override
 	public boolean isDestroyed() {
 		// TODO Auto-generated method stub
-		return isDestory ;
+		return isDestory;
 	}
 
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return isVisible ;
+		return isVisible;
 	}
-	
+
 	public void setIsvisible(boolean isVisible) {
-		this.isVisible = isVisible ;
+		this.isVisible = isVisible;
 	}
+
 	public void setIsdestory(boolean isDestory) {
-		this.isDestory = isDestory ;
+		this.isDestory = isDestory;
 	}
-	
+
 }
