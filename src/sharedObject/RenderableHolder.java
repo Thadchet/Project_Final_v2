@@ -14,6 +14,7 @@ public class RenderableHolder {
 	private List<IRenderable> entities ;
 	private Comparator<IRenderable> comparator ;
 	public static AudioClip switchmenu ;
+	public static AudioClip soundbg ;
 	static {
 		loadResource();
 	}
@@ -27,8 +28,9 @@ public class RenderableHolder {
 		
 	}
 	public static void loadResource() {
-		ClassLoader loader = ClassLoader.getSystemClassLoader();
-		switchmenu = new AudioClip((loader.getResource("res/sound/switch.mp3")).toString());
+
+		switchmenu = new AudioClip(ClassLoader.getSystemResource("res/sound/switch.mp3").toString());
+//		soundbg = new AudioClip(ClassLoader.getSystemResource("sound/intro.mp3").toString());
 		
 		
 	}

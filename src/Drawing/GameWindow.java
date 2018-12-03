@@ -20,82 +20,37 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class GameWindow  {
-	
-	public AnimationTimer gameAnimation ;
+public class GameWindow {
+
+	public AnimationTimer gameAnimation;
 	public boolean spaceRepeat = false;
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
-	
-	
+	private Group pane = new Group();
+	private Scene scene = new Scene(pane);
+	private ArrayList<String> input = new ArrayList<String>();
+	private ArrayList<String> strings = new ArrayList<String>();
+	private ArrayList<Word> wordList = new ArrayList<Word>();
+	private GraphicsContext gc = StartWindow.gc ;
+	private Background bg = StartWindow.bg ;
+
 	public GameWindow(Stage theStage) {
-		Group pane = new Group();
-		Scene scene = new Scene(pane);
 		
-		GraphicsContext gc = StartWindow.gc ;
-
-		ArrayList<String> input = new ArrayList<String>();
-		ArrayList<String> strings = new ArrayList<String>();
-
-		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			public void handle(KeyEvent e) {
-				String code = e.getCode().toString();
-				String s = "" ;
-				if (code == "SPACE" && !spaceRepeat) {
-					input.add(code);
-					spaceRepeat = true;
-				} else if (!input.contains(code) && code != "SPACE") {
-					input.add(code);
-				}
-				s+=code;
-				
-			}
-		});
-
-		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-			public void handle(KeyEvent e) {
-				String code = e.getCode().toString();
-
-				input.remove(code);
-				boolean spceRepeat;
-				if (code == "SPACE")
-					spceRepeat = false;
-			}
-		});
-
-		Background bg = new Background(0,0);
-
-		Font theFont = Font.font("Helvetica", FontWeight.BOLD, 24);
-		gc.setFont(theFont);
-		gc.setFill(Color.WHITE);
-		// gc.setStroke(Color.BLACK);
-		gc.setLineWidth(1);
+		setAction();
+		setBackground();
+		storeWord();
 		theStage.setResizable(false);
-
 		theStage.show();
 
+	}
+	public void startanimation() {
+		draw(gc);
+	}
+	
+	public void draw(GraphicsContext gc) {
 		LongValue lastNanoTime = new LongValue(System.nanoTime());
-
 		IntValue score = new IntValue(0);
-
 		Wizard wizard = new Wizard(300,700,40,40);
-
-		ArrayList<Word> wordList = new ArrayList<Word>();
-
-		for (int i = 0; i < 15; i++) {
-			Word word = new Word(60,60);
-			word.setImage(image_path+"rock.png",60,60);
-
-			double px = 600 * Math.random();
-			double py = -900 * Math.random();
-
-			double velY = 20;
-			word.setPosition(px, py);
-			word.setXspeed(0);
-			word.setYspeed(velY);
-			wordList.add(word);
-		}
-
-		new AnimationTimer() {
+		gameAnimation = new AnimationTimer() {
 			public void handle(long currentNanoTime) {
 				// calculate time since last update.
 				double elapsedTime = (currentNanoTime - lastNanoTime.value) / 1000000000.0;
@@ -113,18 +68,10 @@ public class GameWindow  {
 					wizard.addVelocity(0, -250);
 				if (input.contains("DOWN") && wizard.getY()< 770)
 					wizard.addVelocity(0, 250);
-				/*if (input.contains("SPACE")) {
-					
-					Bullet a = spaceship.shoot();
-					
-					bulletcount.add(a);
-					input.remove("SPACE");
-				}*/
 
 				wizard.update(elapsedTime);
 
 				for (String s : strings) {
-					//b.update(elapsedTime);
 					
                    Iterator<Word> words = wordList.iterator();
                     while ( words.hasNext() )
@@ -155,10 +102,6 @@ public class GameWindow  {
 				bg.render(gc);
 				wizard.render(gc);
 
-				/*for (int i = 0; i < bulletcount.size(); i++) {
-					bulletcount.get(i).render(gc);
-				}*/
-
 				for (int i = 0; i < wordList.size(); i++) {
 					Word word = wordList.get(i);
 					word.render(gc);
@@ -166,10 +109,60 @@ public class GameWindow  {
 
 				String pointsText = "Score : " + (100 * score.value);
 				gc.fillText(pointsText, 50, 50);
-				gc.strokeText(pointsText, 50, 50);
+				//gc.strokeText(pointsText, 50, 50);
 			}
-		}.start();
+		};
+		gameAnimation.start();
+	}
+	public void setAction() {
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent e) {
+				String code = e.getCode().toString();
+				String s = "" ;
+				if (code == "SPACE" && !spaceRepeat) {
+					input.add(code);
+					spaceRepeat = true;
+				} else if (!input.contains(code) && code != "SPACE") {
+					input.add(code);
+				}
+				s+=code;
+				
+			}
+		});
 
+		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent e) {
+				String code = e.getCode().toString();
+
+				input.remove(code);
+				boolean spceRepeat;
+				if (code == "SPACE")
+					spceRepeat = false;
+			}
+		});
+	}
+	public void setBackground() {
+
+		Font theFont = Font.font("Helvetica", FontWeight.BOLD, 24);
+		gc.setFont(theFont);
+		gc.setFill(Color.WHITE);
+		gc.setStroke(Color.BLACK);
+		gc.setLineWidth(1);
+	}
+	public void storeWord() {
+		for (int i = 0; i < 35; i++) {
+			Word word = new Word(60,60);
+			word.setImage(image_path+"rock.png",60,60);
+
+			double px = 600 * Math.random();
+			double py = -900 * Math.random();
+
+			double velY = 20;
+			word.setPosition(px, py);
+			word.setXspeed(0);
+			word.setYspeed(velY);
+			wordList.add(word);
+		}
 	}
 
 }
