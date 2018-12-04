@@ -48,18 +48,16 @@ public class Gameover{
 	}
 	
 	public static void setBackground1(GraphicsContext gc) {
-		gameoverbg.draw(gc);
 		gc.setFill(Color.ORANGERED);
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(2);
-		gc.fillText("GAME OVER", 220, 250);
-		gc.strokeText("GAME OVER", 220, 250);
+		gc.fillText("GAME OVER", 170, 250);
+		gc.strokeText("GAME OVER", 170, 250);
 	}
 
 	
 	public static void setBackground2(GraphicsContext gc) {
-		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 0, 800, 450);
+		
 		gameoverbg.draw(gc);
 		
 	}
