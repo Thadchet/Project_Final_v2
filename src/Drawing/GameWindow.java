@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
+
 public class GameWindow extends Canvas {
 	private static AnimationTimer gamewindowanimation ;
 	private ArrayList<Word> wordList = new ArrayList<>();
@@ -24,6 +25,7 @@ public class GameWindow extends Canvas {
 	private Stage stage ;
 	private Scene scene ;
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
+	public static int score;
 	
 	public GameWindow(Stage stage) {
 		this.stage = stage ;
@@ -45,7 +47,7 @@ public class GameWindow extends Canvas {
 			public void handle(long now) {
 				// TODO Auto-generated method stub
 				//System.out.println("s");
-				undateWord();
+				updateWord();
 				updateDetail();
 	
 			}
@@ -59,7 +61,8 @@ public class GameWindow extends Canvas {
 			}
 			else {
 				System.out.println(temp);
-				RenderableHolder.getInstance().check(temp);	
+				RenderableHolder.getInstance().check(temp);
+				score ++;
 				temp = "" ;
 			}
 		});
@@ -72,7 +75,6 @@ public class GameWindow extends Canvas {
 	public void addWord() {
 		for (int i = 0; i < 1; i++) {
 			word = new Word();
-			word.setImage(image_path+"rock.png",60,60);
 
 			double px = 600 * Math.random();
 			double py = -900 * Math.random();
@@ -88,11 +90,12 @@ public class GameWindow extends Canvas {
 		addWord();
 	}
 	
-	public void undateWord() {
+	public void updateWord() {
 		RenderableHolder.getInstance().updatePos();
 	}
 	public void updateDetail() {
 		RenderableHolder.getInstance().draw(gc);
 		RenderableHolder.getInstance().update();
 	}
+	
 }
