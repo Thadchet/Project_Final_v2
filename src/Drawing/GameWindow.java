@@ -34,6 +34,9 @@ public class GameWindow extends Canvas {
 	public String image_path = ClassLoader.getSystemResource("ImWord/").toString();
 	public static int score;
 	private boolean isGameover = false;
+	public static boolean skillused1 = false;
+	public static boolean skillused2 = false;
+	public static int high_score = 0 ;
 
 	public GameWindow(Stage stage) {
 		this.stage = stage;
@@ -70,10 +73,16 @@ public class GameWindow extends Canvas {
 			if (!isGameover) {
 				if (spell.contains(KeyEvent.getCode())) {
 					if (KeyEvent.getCode().equals(KeyCode.F1)) {
-						RenderableHolder.getInstance().reduceSpeed();
+						if (!skillused1) {
+							RenderableHolder.getInstance().reduceSpeed();
+							skillused1 = true;
+						}
 					}
 					if (KeyEvent.getCode().equals(KeyCode.F2)) {
-						RenderableHolder.getInstance().destroyAllscreen();
+						if (!skillused2) {
+							RenderableHolder.getInstance().destroyAllscreen();
+							skillused2 = true;
+						}
 					}
 					if (KeyEvent.getCode().equals(KeyCode.F3)) {
 						////
@@ -163,6 +172,12 @@ public class GameWindow extends Canvas {
 			Gameover.startgameover(gc);
 			isGameover = true;
 			RenderableHolder.gameplay.stop();
+			setHighscore();
+		}
+	}
+	public void setHighscore() {
+		if(high_score < wizard.score) {
+			high_score = wizard.score ;
 		}
 	}
 

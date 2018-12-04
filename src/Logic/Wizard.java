@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 public class Wizard extends Entity {
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
 	public static int score = 0;
-	public static int life = 1;
+	public static int life = 10;
 
 	public Wizard() {
 		setImage(image_path + "wizard1.gif", 200, 200);

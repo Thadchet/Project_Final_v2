@@ -68,7 +68,8 @@ public class Gameover {
 		gc.fillText(String.valueOf(Wizard.score),260,250);
 		gc.setFont(font);
 		gc.setFill(Color.BROWN);
-		gc.fillText("HISTORY", 170,350);
+		gc.fillText("HIGH SCORE", 130,350);
+		gc.fillText(String.valueOf(GameWindow.high_score), 260, 450);
 	}
 
 	public static void startgameover(GraphicsContext gc) {

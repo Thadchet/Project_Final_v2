@@ -48,7 +48,6 @@ public class RenderableHolder {
 	public void update() {
 		for (int i = entities.size() - 1; i >= 0; i--) {
 			if (entities.get(i).isDestroyed()) {
-				fall.play();
 				entities.remove(i);
 			}
 		}
@@ -88,6 +87,7 @@ public class RenderableHolder {
 					if (i instanceof Word) {
 						((Word) i).updatePos(((Word) i).getSpeed());
 						if (((Word) i).getY() > 650) {
+							fall.play();
 							((Wizard) w).decreaseLife();
 							((Word) i).setIsvisible(false);
 							((Word) i).setIsdestory(true);
