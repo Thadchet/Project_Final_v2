@@ -21,7 +21,7 @@ public class Word extends Entity {
 	public Word(String wordstring,String image) {
 		setWordstring(wordstring);
 		setImage(image ,110,63);
-		setSpeed(-2);
+		setSpeed(-1);
 	}
 
 	public String getWordstring() {
