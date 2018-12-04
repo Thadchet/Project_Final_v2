@@ -38,7 +38,6 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		StackPane root = new StackPane();
 		StartWindow startwindow = new StartWindow(stage);
 		startwindow.startAnimation();
 		stage.show();

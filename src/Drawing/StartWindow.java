@@ -118,19 +118,6 @@ public class StartWindow {
 
 	}
 
-	public void drawSelectedColor() {
-		setBackground();
-		if (numberselected == 0) {
-			gc.setStroke(Color.DARKSLATEGREY);
-			gc.setLineWidth(5);
-			gc.strokeRect(500, 223, 150, 50);
-		}
-		if (numberselected == 1) {
-			gc.setStroke(Color.DARKSLATEGREY);
-			gc.setLineWidth(5);
-			gc.strokeRect(506, 283, 130, 50);
-		}
-	}
 
 	public void startAnimation() {
 		draw(gc);

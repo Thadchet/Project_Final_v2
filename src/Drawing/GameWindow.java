@@ -42,6 +42,7 @@ public class GameWindow extends Canvas {
 		addAll();
 		setSpell();
 		requestFocus();
+		
 	}
 
 	public void drawGameWindow() {
@@ -51,9 +52,9 @@ public class GameWindow extends Canvas {
 			@Override
 			public void handle(long now) {
 				// TODO Auto-generated method stub
-				// System.out.println("s");
 				updateWord();
 				updateDetail();
+				isGameover();
 			}
 		};
 		gamewindowanimation.start();
@@ -128,6 +129,14 @@ public class GameWindow extends Canvas {
 	public void updateDetail() {
 		RenderableHolder.getInstance().draw(gc);
 		RenderableHolder.getInstance().update();
+	}
+	public void isGameover() {
+		if(RenderableHolder.getInstance().isGameover()) {
+			gamewindowanimation.stop();
+			RenderableHolder.getInstance().clear();
+			Gameover.startgameover(gc);
+			
+		}
 	}
 
 	public void setSpell() {

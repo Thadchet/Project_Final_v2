@@ -115,11 +115,25 @@ public class RenderableHolder {
 							((Word) i).setIsvisible(false);
 							((Word) i).setIsdestory(true);
 							((Wizard) w).addScore();
-							entities.remove(i);
+							
 						}
 					}
 				}
 			}
 		}
+	}
+	
+	public boolean isGameover() {
+		for(IRenderable w : entities) {
+			if(w instanceof Wizard) {
+				if(((Wizard) w).life == 0) {
+					return true ;
+				}
+			}
+		}
+		return false;
+	}
+	public void clear() {
+		entities.clear();
 	}
 }
