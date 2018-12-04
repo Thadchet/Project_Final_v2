@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import Drawing.GameWindow;
+import Logic.Wizard;
 import Logic.Word;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.media.AudioClip;
@@ -15,7 +17,7 @@ public class RenderableHolder {
 	private List<IRenderable> entities;
 	public static AudioClip fall;
 	public static AudioClip menu;
-	public static AudioClip wordDead ;
+	public static AudioClip wordDead;
 	public static String image_path = ClassLoader.getSystemResource("image/").toString();
 	public static String sound_path = ClassLoader.getSystemResource("sound/").toString();
 	static {
@@ -31,7 +33,7 @@ public class RenderableHolder {
 
 		menu = new AudioClip(sound_path + "switch.mp3");
 		fall = new AudioClip(sound_path + "fall.mp3");
-		wordDead = new AudioClip(sound_path+"wordDead.mp3");
+		wordDead = new AudioClip(sound_path + "wordDead.mp3");
 		// explosionSound = new
 		// AudioClip(ClassLoader.getSystemResource("Explosion.wav").toString());
 
@@ -50,19 +52,24 @@ public class RenderableHolder {
 			}
 		}
 	}
+
 	public void check(String temp) {
-		for (IRenderable i : entities) {
-			if (i instanceof Word) {
-				if(((Word) i).getWordstring().equalsIgnoreCase(temp)) {
-					((Word) i).setIsvisible(false);
-					((Word) i).setIsdestory(true);
-					wordDead.play();
+		for (IRenderable w : entities) {
+			if (w instanceof Wizard) {
+				for (IRenderable i : entities) {
+					if (i instanceof Word) {
+						if (((Word) i).getWordstring().equalsIgnoreCase(temp)) {
+							((Wizard) w).addScore();
+							((Word) i).setIsvisible(false);
+							((Word) i).setIsdestory(true);
+							wordDead.play();
+						}
+					}
+
 				}
 			}
-
 		}
 	}
-	
 
 	public void draw(GraphicsContext gc) {
 		for (int i = 0; i < entities.size(); i++) {
@@ -75,16 +82,44 @@ public class RenderableHolder {
 	}
 
 	public void updatePos() {
-		for (IRenderable i : entities) {
-			if (i instanceof Word) {
-				((Word) i).updatePos(-0.5);
-				if (((Word) i).getY() > 400) {
-					((Word) i).setIsvisible(false);
-					((Word) i).setIsdestory(true);
+		for (IRenderable w : entities) {
+			if (w instanceof Wizard) {
+				for (IRenderable i : entities) {
+					if (i instanceof Word) {
+						((Word) i).updatePos(((Word) i).getSpeed());
+						if (((Word) i).getY() > 500) {
+							((Wizard) w).decreaseLife();
+							((Word) i).setIsvisible(false);
+							((Word) i).setIsdestory(true);
+						}
+					}
 				}
 			}
-
 		}
 	}
 
+	public void reduceSpeed() {
+		for (IRenderable i : entities) {
+			if (i instanceof Word) {
+				((Word) i).setSpeed(-0.2);
+			}
+		}
+	}
+
+	public void destroyAllscreen() {
+		for (IRenderable w : entities) {
+			if (w instanceof Wizard) {
+				for (IRenderable i : entities) {
+					if (i instanceof Word) {
+						if (((Word) i).getY() > 0) {
+							((Word) i).setIsvisible(false);
+							((Word) i).setIsdestory(true);
+							((Wizard) w).addScore();
+							entities.remove(i);
+						}
+					}
+				}
+			}
+		}
+	}
 }

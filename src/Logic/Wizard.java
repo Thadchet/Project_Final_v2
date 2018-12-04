@@ -5,28 +5,37 @@ import javafx.scene.image.Image;
 
 public class Wizard extends Entity {
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
-	public int score ;
+	public static int score = 0;
+	public static int life = 5;
+
 	public Wizard() {
-        setImage(image_path+"wizard1.gif",200,200);
-		this.score = 0 ;
-		this.setPosition(300,500);
-	
+		setImage(image_path + "wizard1.gif", 200, 200);
+		this.setPosition(300, 500);
 	}
+
+	public void decreaseLife() {
+		int temp = life-1 ;
+		if(temp < 0) {
+			temp = 0 ;
+		}
+		life = temp ;
+	}
+
 	public void addScore() {
-		this.score += 1 ;
+		this.score += 1;
 	}
-	
+
 	@Override
-	public void setImage(String filename,int width ,int height) {
-		Image i = new Image(filename,width,height,false,false);
-        setImage(i);
+	public void setImage(String filename, int width, int height) {
+		Image i = new Image(filename, width, height, false, false);
+		setImage(i);
 	}
 
 	@Override
 	public void setImage(Image i) {
 		image = i;
-        width = i.getWidth();
-        height = i.getHeight();
+		width = i.getWidth();
+		height = i.getHeight();
 	}
 
 	@Override
@@ -44,8 +53,7 @@ public class Wizard extends Entity {
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return true ;
+		return true;
 	}
 
-	
 }

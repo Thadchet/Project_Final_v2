@@ -8,10 +8,20 @@ public class Word extends Entity {
 	public String image_path = ClassLoader.getSystemResource("ImWord/").toString();
 	private boolean isVisible = true;
 	private boolean isDestory = false;
+	private double speed ;
+
+	public double getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
 
 	public Word(String wordstring,String image) {
 		setWordstring(wordstring);
 		setImage(image ,110,63);
+		setSpeed(-1);
 	}
 
 	public String getWordstring() {
@@ -35,8 +45,8 @@ public class Word extends Entity {
 		setImage(i);
 	}
 
-	public void updatePos(double time) {
-		setPosition(getX(), getY() - time);
+	public void updatePos(double speed) {
+		setPosition(getX(), getY() - speed);
 		//System.out.println(getY());
 	}
 
