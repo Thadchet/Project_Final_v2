@@ -87,7 +87,7 @@ public class RenderableHolder {
 				for (IRenderable i : entities) {
 					if (i instanceof Word) {
 						((Word) i).updatePos(((Word) i).getSpeed());
-						if (((Word) i).getY() > 500) {
+						if (((Word) i).getY() > 400) {
 							((Wizard) w).decreaseLife();
 							((Word) i).setIsvisible(false);
 							((Word) i).setIsdestory(true);

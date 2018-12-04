@@ -117,7 +117,7 @@ public class GameWindow extends Canvas {
 		for (int i = 0; i < data.length; i++) {
 			System.out.println(image_path + data[i] + ".png");
 			word = new Word(data[i], image_path + data[i] + ".png");
-			double px = Math.random() * 550;
+			double px = Math.random() * 450;
 			double py = Math.random() * -400;
 
 			word.setPosition(px, py);
