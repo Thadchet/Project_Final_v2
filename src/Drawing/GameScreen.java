@@ -24,7 +24,7 @@ public class GameScreen implements IRenderable{
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.drawImage(bg, 0, 0);
-		Font font = new Font("Monospace",30);
+		Font font = new Font("Agency FB",30);
 		gc.setFont(font);
 		gc.fillText("Score : "+ String.valueOf(Wizard.score), 50, 50);
 		gc.fillText(GameWindow.temp,50,100);

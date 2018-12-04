@@ -50,7 +50,7 @@ public class Gameover {
 		gc.setFill(Color.ORANGERED);
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(2);
-		Font font = new Font("Monospace", 60);
+		Font font = new Font("Agency FB", 60);
 		gc.setFont(font);
 		gc.fillText("GAME OVER", 100, 150);
 		gc.strokeText("GAME OVER", 100, 150);
@@ -61,7 +61,7 @@ public class Gameover {
 		gc.setFill(Color.ORANGERED);
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(2);
-		Font font = new Font("Monospace", 60);
+		Font font = new Font("Agency FB", 60);
 		gc.setFont(font);
 		gc.fillText("GAME OVER", 100, 150);
 		gc.strokeText("GAME OVER", 100, 150);
