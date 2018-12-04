@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import sharedObject.IRenderable;
 
+
 public class GameScreen implements IRenderable{
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
 	private Image bg ;
@@ -22,7 +23,8 @@ public class GameScreen implements IRenderable{
 		gc.drawImage(bg, 0, 0);
 		Font font = new Font("Monospace",30);
 		gc.setFont(font);
-		gc.fillText("Score : ", 50, 50);
+		gc.fillText("Score : "+ String.valueOf(GameWindow.score), 50, 50);
+		System.out.println();
 	}
 
 	@Override
