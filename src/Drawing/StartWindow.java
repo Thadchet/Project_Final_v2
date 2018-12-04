@@ -43,10 +43,11 @@ public class StartWindow {
 	public StartWindow(Stage primarystage) {
 		canvas = new Canvas(550, 750);
 		this.primarystage = primarystage;
+		primarystage.setResizable(false);
 		gc = canvas.getGraphicsContext2D();
 		intro = new AudioClip(sound_path + "intro.mp3");
 		wizard = new Wizard();
-		background = new Background(0, 0);
+		background = new Background(RenderableHolder.image_path+"bg.gif",0, 0);
 
 	}
 
@@ -134,6 +135,8 @@ public class StartWindow {
 		intro.stop();
 		GameWindow gamewindow = new GameWindow(primarystage);
 		gamewindow.drawGameWindow();
+		
+		background = null ;
 
 	}
 

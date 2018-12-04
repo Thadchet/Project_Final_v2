@@ -6,9 +6,9 @@ import javafx.scene.image.Image;
 public class Background extends Entity {
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
 
-	public Background(int width , int height) {
-		setImage(image_path+"bg.gif",width ,height);
-		this.setPosition(width, height);
+	public Background(String i,int width , int height) {
+		setImage(i,width ,height);
+		this.setPosition(0,0);
 	}
 
 	@Override
@@ -20,14 +20,14 @@ public class Background extends Entity {
 
 	@Override
 	public void setImage(String filename,int width , int height) {
-		Image i = new Image(filename, 700, 900, false, false);
+		Image i = new Image(filename,0,0, false, false);
 		setImage(i);
 	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(image, x, y);
+		gc.drawImage(image, 0, 0,550,750);
 	}
 
 	@Override
