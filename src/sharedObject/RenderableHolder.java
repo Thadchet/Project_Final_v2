@@ -57,7 +57,6 @@ public class RenderableHolder {
 					((Word) i).setIsvisible(false);
 					((Word) i).setIsdestory(true);
 					wordDead.play();
-
 				}
 			}
 
@@ -78,7 +77,7 @@ public class RenderableHolder {
 	public void updatePos() {
 		for (IRenderable i : entities) {
 			if (i instanceof Word) {
-				((Word) i).updatePos(-1);
+				((Word) i).updatePos(-0.5);
 				if (((Word) i).getY() > 400) {
 					((Word) i).setIsvisible(false);
 					((Word) i).setIsdestory(true);

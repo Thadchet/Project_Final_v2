@@ -17,13 +17,14 @@ import sharedObject.RenderableHolder;
 public class GameWindow extends Canvas {
 	private static AnimationTimer gamewindowanimation ;
 	private ArrayList<Word> wordList = new ArrayList<>();
+	private String[] data = {"cat","dog","win","create"};
 	private String temp = "" ;
 	private GameScreen gamescreen ;
 	private Word word ;
 	private GraphicsContext gc ;
 	private Stage stage ;
 	private Scene scene ;
-	public String image_path = ClassLoader.getSystemResource("image/").toString();
+	public String image_path = ClassLoader.getSystemResource("ImWord/").toString();
 	
 	public GameWindow(Stage stage) {
 		this.stage = stage ;
@@ -70,15 +71,15 @@ public class GameWindow extends Canvas {
 	}
 	
 	public void addWord() {
-		for (int i = 0; i < 1; i++) {
-			word = new Word();
-			word.setImage(image_path+"rock.png",60,60);
-
+		for(int i = 0 ; i < data.length ; i++) {
+			System.out.println(data[i]);
+			System.out.println(image_path+data[i]+".png");
+			word = new Word(data[i],image_path+data[i]+".png");
+			
 			double px = 600 * Math.random();
 			double py = -900 * Math.random();
 
 			word.setPosition(px, py);
-			word.setWordstring("cat");
 			wordList.add(word);
 			RenderableHolder.getInstance().add(word);
 		}
@@ -90,6 +91,7 @@ public class GameWindow extends Canvas {
 	
 	public void undateWord() {
 		RenderableHolder.getInstance().updatePos();
+		
 	}
 	public void updateDetail() {
 		RenderableHolder.getInstance().draw(gc);
