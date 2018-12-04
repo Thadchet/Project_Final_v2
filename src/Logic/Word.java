@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class Word extends Entity {
-	private String wordstring = "a";
+	private String wordstring ;
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
 	private boolean isVisible = true;
 	private boolean isDestory = false;

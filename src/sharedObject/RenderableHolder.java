@@ -53,11 +53,11 @@ public class RenderableHolder {
 	public void check(String temp) {
 		for (IRenderable i : entities) {
 			if (i instanceof Word) {
-				if(((Word) i).getWordstring().equals(temp)) {
+				if(((Word) i).getWordstring().equalsIgnoreCase(temp)) {
 					((Word) i).setIsvisible(false);
 					((Word) i).setIsdestory(true);
 					wordDead.play();
-					entities.remove(i);
+
 				}
 			}
 

@@ -48,7 +48,6 @@ public class GameWindow extends Canvas {
 				undateWord();
 				updateDetail();
 	
-				
 			}
 		};
 		gamewindowanimation.start();
@@ -71,7 +70,7 @@ public class GameWindow extends Canvas {
 	}
 	
 	public void addWord() {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1; i++) {
 			word = new Word();
 			word.setImage(image_path+"rock.png",60,60);
 
@@ -79,6 +78,7 @@ public class GameWindow extends Canvas {
 			double py = -900 * Math.random();
 
 			word.setPosition(px, py);
+			word.setWordstring("cat");
 			wordList.add(word);
 			RenderableHolder.getInstance().add(word);
 		}
