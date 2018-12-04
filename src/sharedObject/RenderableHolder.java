@@ -18,6 +18,8 @@ public class RenderableHolder {
 	public static AudioClip fall;
 	public static AudioClip menu;
 	public static AudioClip wordDead;
+	public static AudioClip gameover ;
+	public static AudioClip gameplay ;
 	public static String image_path = ClassLoader.getSystemResource("image/").toString();
 	public static String sound_path = ClassLoader.getSystemResource("sound/").toString();
 	static {
@@ -26,7 +28,6 @@ public class RenderableHolder {
 
 	public RenderableHolder() {
 		entities = new ArrayList<IRenderable>();
-
 	}
 
 	public static void loadResource() {
@@ -34,8 +35,8 @@ public class RenderableHolder {
 		menu = new AudioClip(sound_path + "switch.mp3");
 		fall = new AudioClip(sound_path + "fall.mp3");
 		wordDead = new AudioClip(sound_path + "wordDead.mp3");
-		// explosionSound = new
-		// AudioClip(ClassLoader.getSystemResource("Explosion.wav").toString());
+		gameover = new AudioClip(sound_path +"gameover.mp3");
+		gameplay = new AudioClip(sound_path+"game.mp3");
 
 	}
 
@@ -65,7 +66,6 @@ public class RenderableHolder {
 							wordDead.play();
 						}
 					}
-
 				}
 			}
 		}
@@ -87,7 +87,7 @@ public class RenderableHolder {
 				for (IRenderable i : entities) {
 					if (i instanceof Word) {
 						((Word) i).updatePos(((Word) i).getSpeed());
-						if (((Word) i).getY() > 400) {
+						if (((Word) i).getY() > 650) {
 							((Wizard) w).decreaseLife();
 							((Word) i).setIsvisible(false);
 							((Word) i).setIsdestory(true);
@@ -108,7 +108,7 @@ public class RenderableHolder {
 					public void run() {
 						// TODO Auto-generated method stub
 						try {
-							Thread.sleep(3000);
+							Thread.sleep(5000);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -141,6 +141,8 @@ public class RenderableHolder {
 		for(IRenderable w : entities) {
 			if(w instanceof Wizard) {
 				if(((Wizard) w).life == 0) {
+					gameover.play();
+					System.out.println("dead");
 					return true ;
 				}
 			}

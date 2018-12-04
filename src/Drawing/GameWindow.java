@@ -18,13 +18,15 @@ import sharedObject.RenderableHolder;
 public class GameWindow extends Canvas {
 	private static AnimationTimer gamewindowanimation;
 	private ArrayList<Word> wordList = new ArrayList<>();
-	private String[] data = { "cat", "dog", "win", "create", "java", "progmeth","chromatic","integral","unique","vertex","ceiling",
-							"adjacency","bipartitle","degree","edges","euler","hamilton","proof","iterator","recurrence","machine",
-							"priority","discrete","algorithms"};
+	private String[] data = { "cat", "dog", "win", "create", "java", "progmeth", "chromatic", "integral", "unique",
+			"vertex", "ceiling", "adjacency", "bipartitle", "degree", "edges", "euler", "hamilton", "proof", "iterator",
+			"recurrence", "machine", "priority", "discrete", "algorithms", "list", "set", "tuple", "git", "int",
+			"float", "double", "and", "or", "nfa", "dfa", "binary", "stack", "vector", "data", "insert", "erase",
+			"return", "method", "hash", "python", "sort" };
 	private ArrayList<KeyCode> spell = new ArrayList<>();
 	public static String temp = "";
 	private GameScreen gamescreen;
-	private Word word; 
+	private Word word;
 	private Wizard wizard;
 	private GraphicsContext gc;
 	private Stage stage;
@@ -82,7 +84,18 @@ public class GameWindow extends Canvas {
 						if (KeyEvent.getCode().equals(KeyCode.BACK_SPACE)) {
 							temp = temp.substring(0, temp.length() - 1);
 						} else {
-							temp += KeyEvent.getCode().toString();
+							if (!(KeyEvent.getCode().equals(KeyCode.UP) || KeyEvent.getCode().equals(KeyCode.DOWN)
+									|| KeyEvent.getCode().equals(KeyCode.SHIFT)
+									|| KeyEvent.getCode().equals(KeyCode.LEFT)
+									|| KeyEvent.getCode().equals(KeyCode.RIGHT)
+									|| KeyEvent.getCode().equals(KeyCode.CONTROL))
+									|| KeyEvent.getCode().equals(KeyCode.BACK_SLASH)
+									|| KeyEvent.getCode().equals(KeyCode.ALT)
+									|| KeyEvent.getCode().equals(KeyCode.PAGE_DOWN)
+									|| KeyEvent.getCode().equals(KeyCode.PAGE_UP)
+									|| KeyEvent.getCode().equals(KeyCode.TAB)) {
+								temp += KeyEvent.getCode().toString();
+							}
 						}
 					} else {
 						// System.out.println(temp);
@@ -90,14 +103,13 @@ public class GameWindow extends Canvas {
 						temp = "";
 					}
 				}
-			}
-			else {
-				if(KeyEvent.getCode().equals(KeyCode.ENTER)) {
+			} else {
+				if (KeyEvent.getCode().equals(KeyCode.ENTER)) {
 					StartWindow startwindow = new StartWindow(stage);
 					startwindow.startAnimation();
-					isGameover = false ;
-					wizard.life = 5 ;
-					wizard.score = 0 ;
+					isGameover = false;
+					wizard.life = 5;
+					wizard.score = 0;
 				}
 			}
 		});
@@ -120,7 +132,7 @@ public class GameWindow extends Canvas {
 			System.out.println(image_path + data[i] + ".png");
 			word = new Word(data[i], image_path + data[i] + ".png");
 			double px = Math.random() * 450;
-			double py = Math.random() * -2000;
+			double py = Math.random() * -4000;
 
 			word.setPosition(px, py);
 			wordList.add(word);
@@ -145,10 +157,12 @@ public class GameWindow extends Canvas {
 
 	public void isGameover() {
 		if (RenderableHolder.getInstance().isGameover()) {
+			RenderableHolder.gameover.play();
 			gamewindowanimation.stop();
 			RenderableHolder.getInstance().clear();
 			Gameover.startgameover(gc);
-			isGameover = true ;
+			isGameover = true;
+			RenderableHolder.gameplay.stop();
 		}
 	}
 

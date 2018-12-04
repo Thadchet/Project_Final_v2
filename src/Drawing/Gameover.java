@@ -50,24 +50,25 @@ public class Gameover {
 		gc.setFill(Color.ORANGERED);
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(2);
-		Font font = new Font("Agency FB", 60);
+		Font font = new Font("Agency FB", 100);
 		gc.setFont(font);
 		gc.fillText("GAME OVER", 100, 150);
 		gc.strokeText("GAME OVER", 100, 150);
-	}
+	} 
 
 	public static void setBackground2(GraphicsContext gc) {
 		gameoverbg.draw(gc);
-		gc.setFill(Color.ORANGERED);
+		gc.setFill(Color.PAPAYAWHIP);
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(2);
-		Font font = new Font("Agency FB", 60);
+		Font font = new Font("Agency FB", 80);
 		gc.setFont(font);
-		gc.fillText("GAME OVER", 100, 150);
-		gc.strokeText("GAME OVER", 100, 150);
-		gc.fillText("YOUR SCORE", 100,350);
+		gc.fillText("YOUR SCORE", 120,150);
 		gc.setFill(Color.BLACK);
-		gc.fillText(String.valueOf(Wizard.score),170,450);
+		gc.fillText(String.valueOf(Wizard.score),260,250);
+		gc.setFont(font);
+		gc.setFill(Color.BROWN);
+		gc.fillText("HISTORY", 170,350);
 	}
 
 	public static void startgameover(GraphicsContext gc) {

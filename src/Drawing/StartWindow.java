@@ -45,7 +45,7 @@ public class StartWindow {
 		this.primarystage = primarystage;
 		primarystage.setResizable(false);
 		gc = canvas.getGraphicsContext2D();
-		intro = new AudioClip(sound_path + "intro.mp3");
+		intro = new AudioClip(sound_path + "open.mp3");
 		wizard = new Wizard();
 		background = new Background(RenderableHolder.image_path+"bg.gif",0, 0);
 
@@ -68,11 +68,11 @@ public class StartWindow {
 		if (this.isframeUp) {
 			gc.setLineWidth(4);
 			gc.setStroke(Color.WHITE);
-			gc.strokeRect(230, 195, 100, 50);
+			gc.strokeRect(215, 195, 100, 50);
 		} else if (!isframeUp) {
 			gc.setLineWidth(4);
 			gc.setStroke(Color.WHITE);
-			gc.strokeRect(230, 265, 100, 50);
+			gc.strokeRect(215, 265, 100, 50);
 		}
 
 	}
@@ -126,7 +126,7 @@ public class StartWindow {
 	}
 
 	public void playsong() {
-		intro = new AudioClip(sound_path + "intro.mp3");
+		intro = new AudioClip(sound_path + "open.mp3");
 		intro.play();
 	}
 
@@ -136,6 +136,7 @@ public class StartWindow {
 		intro.stop();
 		GameWindow gamewindow = new GameWindow(primarystage);
 		gamewindow.drawGameWindow();
+		RenderableHolder.gameplay.play();
 		
 
 	}

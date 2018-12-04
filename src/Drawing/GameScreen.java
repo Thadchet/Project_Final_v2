@@ -12,6 +12,7 @@ public class GameScreen implements IRenderable{
 	private String image_path = ClassLoader.getSystemResource("image/").toString();
 	private Image bg ;
 	private Image life ;
+	private Image laser ;
 	public GameScreen() {
 		// TODO Auto-generated constructor stub
 		setImage();
@@ -19,6 +20,7 @@ public class GameScreen implements IRenderable{
 	public void setImage() {
 		bg = new Image(image_path+"bg.gif");
 		life = new Image(image_path+"life.gif");
+		laser = new Image(image_path+"laser.gif");
 	}
 	@Override
 	public void draw(GraphicsContext gc) {
@@ -30,6 +32,7 @@ public class GameScreen implements IRenderable{
 		gc.fillText(GameWindow.temp,50,100);
 		gc.drawImage(life,430,20,40,40);
 		gc.fillText(" x "+ String.valueOf(Wizard.life), 470,50);
+		gc.drawImage(laser,20, 650,570,100);
 	}
 
 	@Override
