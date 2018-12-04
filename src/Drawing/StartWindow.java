@@ -136,7 +136,6 @@ public class StartWindow {
 		GameWindow gamewindow = new GameWindow(primarystage);
 		gamewindow.drawGameWindow();
 		
-		background = null ;
 
 	}
 

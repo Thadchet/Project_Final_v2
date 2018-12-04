@@ -11,6 +11,7 @@ public class Wizard extends Entity {
 	public Wizard() {
 		setImage(image_path + "wizard1.gif", 200, 200);
 		this.setPosition(300, 500);
+		
 	}
 
 	public void decreaseLife() {

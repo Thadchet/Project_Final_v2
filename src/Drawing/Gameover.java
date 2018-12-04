@@ -1,6 +1,7 @@
 package Drawing;
 
 import Logic.Background;
+import Logic.Wizard;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -15,52 +16,60 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import sharedObject.RenderableHolder;
 
-public class Gameover{
+public class Gameover {
 	private static GraphicsContext gc;
-	private static boolean isframeUp = true ;
-	private static AnimationTimer gameoveranimation ;
-	private static Background gameoverbg = new Background(RenderableHolder.image_path+"gameoverbg.png",0,0);
-	
+	private static boolean isframeUp = true;
+	private static AnimationTimer gameoveranimation;
+	private static Background gameoverbg = new Background(RenderableHolder.image_path + "gameoverbg.png", 0, 0);
+
 	public Gameover() {
 	}
+
 	public static void drawGameover(GraphicsContext gc) {
 		Thread thread = new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
+				int i = 1 ;
 				// TODO Auto-generated method stub
-				int check = 0 ;
-				while(check < 100) {
-					System.out.println(check);
-					setBackground1(gc);
-					try {
-						Thread.sleep(3000);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}	
-					setBackground2(gc);
-					check++ ;
+				setBackground1(gc);
+				try {
+					Thread.sleep(3000);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				System.out.println(i);
+				setBackground2(gc);
 			}
 		});
 		thread.start();
 	}
-	
+
 	public static void setBackground1(GraphicsContext gc) {
 		gc.setFill(Color.ORANGERED);
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(2);
-		gc.fillText("GAME OVER", 170, 250);
-		gc.strokeText("GAME OVER", 170, 250);
+		Font font = new Font("Monospace", 60);
+		gc.setFont(font);
+		gc.fillText("GAME OVER", 100, 150);
+		gc.strokeText("GAME OVER", 100, 150);
 	}
 
-	
 	public static void setBackground2(GraphicsContext gc) {
-		
 		gameoverbg.draw(gc);
-		
+		gc.setFill(Color.ORANGERED);
+		gc.setStroke(Color.BLACK);
+		gc.setLineWidth(2);
+		Font font = new Font("Monospace", 60);
+		gc.setFont(font);
+		gc.fillText("GAME OVER", 100, 150);
+		gc.strokeText("GAME OVER", 100, 150);
+		gc.fillText("YOUR SCORE", 100,350);
+		gc.setFill(Color.BLACK);
+		gc.fillText(String.valueOf(Wizard.score),170,450);
 	}
+
 	public static void startgameover(GraphicsContext gc) {
 		drawGameover(gc);
 	}

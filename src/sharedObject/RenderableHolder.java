@@ -102,6 +102,21 @@ public class RenderableHolder {
 		for (IRenderable i : entities) {
 			if (i instanceof Word) {
 				((Word) i).setSpeed(-0.2);
+				Thread t = new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						try {
+							Thread.sleep(3000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						((Word) i).setSpeed(-1);
+					}
+				});
+				t.start();
 			}
 		}
 	}
@@ -115,7 +130,6 @@ public class RenderableHolder {
 							((Word) i).setIsvisible(false);
 							((Word) i).setIsdestory(true);
 							((Wizard) w).addScore();
-							
 						}
 					}
 				}

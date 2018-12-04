@@ -94,6 +94,8 @@ public class GameWindow extends Canvas {
 					StartWindow startwindow = new StartWindow(stage);
 					startwindow.startAnimation();
 					isGameover = false ;
+					wizard.life = 5 ;
+					wizard.score = 0 ;
 				}
 			}
 		});
@@ -145,7 +147,6 @@ public class GameWindow extends Canvas {
 			RenderableHolder.getInstance().clear();
 			Gameover.startgameover(gc);
 			isGameover = true ;
-
 		}
 	}
 
