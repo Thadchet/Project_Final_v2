@@ -23,12 +23,13 @@ public class GameWindow extends Canvas {
 	public static String temp = "";
 	private GameScreen gamescreen;
 	private Word word;
-	private Wizard wizard ;
+	private Wizard wizard;
 	private GraphicsContext gc;
 	private Stage stage;
 	private Scene scene;
 	public String image_path = ClassLoader.getSystemResource("ImWord/").toString();
 	public static int score;
+	private boolean isGameover = false;
 
 	public GameWindow(Stage stage) {
 		this.stage = stage;
@@ -42,7 +43,7 @@ public class GameWindow extends Canvas {
 		addAll();
 		setSpell();
 		requestFocus();
-		
+
 	}
 
 	public void drawGameWindow() {
@@ -62,32 +63,39 @@ public class GameWindow extends Canvas {
 
 	public void addEvent(GraphicsContext gc) {
 		this.setOnKeyPressed((KeyEvent) -> {
-			if (spell.contains(KeyEvent.getCode())) {
-				if (KeyEvent.getCode().equals(KeyCode.F1)) {
-					RenderableHolder.getInstance().reduceSpeed();
-				}
-				if (KeyEvent.getCode().equals(KeyCode.F2)) {
-					RenderableHolder.getInstance().destroyAllscreen();
-				}
-				if (KeyEvent.getCode().equals(KeyCode.F3)) {
-					////
-				}
-
-			} else {
-				if (!KeyEvent.getCode().equals(KeyCode.ENTER)) {
-					if (KeyEvent.getCode().equals(KeyCode.BACK_SPACE)) {
-						temp = temp.substring(0, temp.length() - 1);
-					} else {
-						temp += KeyEvent.getCode().toString();
+			if (!isGameover) {
+				if (spell.contains(KeyEvent.getCode())) {
+					if (KeyEvent.getCode().equals(KeyCode.F1)) {
+						RenderableHolder.getInstance().reduceSpeed();
 					}
-				} else {
+					if (KeyEvent.getCode().equals(KeyCode.F2)) {
+						RenderableHolder.getInstance().destroyAllscreen();
+					}
+					if (KeyEvent.getCode().equals(KeyCode.F3)) {
+						////
+					}
 
-					System.out.println(temp);
-					RenderableHolder.getInstance().check(temp);
-					temp = "";
+				} else {
+					if (!KeyEvent.getCode().equals(KeyCode.ENTER)) {
+						if (KeyEvent.getCode().equals(KeyCode.BACK_SPACE)) {
+							temp = temp.substring(0, temp.length() - 1);
+						} else {
+							temp += KeyEvent.getCode().toString();
+						}
+					} else {
+						// System.out.println(temp);
+						RenderableHolder.getInstance().check(temp);
+						temp = "";
+					}
 				}
 			}
-
+			else {
+				if(KeyEvent.getCode().equals(KeyCode.ENTER)) {
+					StartWindow startwindow = new StartWindow(stage);
+					startwindow.startAnimation();
+					isGameover = false ;
+				}
+			}
 		});
 
 	}
@@ -96,6 +104,7 @@ public class GameWindow extends Canvas {
 		gamescreen = new GameScreen();
 		RenderableHolder.getInstance().add(gamescreen);
 	}
+
 	public void addWizard() {
 		wizard = new Wizard();
 		RenderableHolder.getInstance().add(wizard);
@@ -123,19 +132,20 @@ public class GameWindow extends Canvas {
 
 	public void updateWord() {
 		RenderableHolder.getInstance().updatePos();
-
 	}
 
 	public void updateDetail() {
 		RenderableHolder.getInstance().draw(gc);
 		RenderableHolder.getInstance().update();
 	}
+
 	public void isGameover() {
-		if(RenderableHolder.getInstance().isGameover()) {
+		if (RenderableHolder.getInstance().isGameover()) {
 			gamewindowanimation.stop();
 			RenderableHolder.getInstance().clear();
 			Gameover.startgameover(gc);
-			
+			isGameover = true ;
+
 		}
 	}
 

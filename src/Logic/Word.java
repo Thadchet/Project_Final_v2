@@ -21,7 +21,13 @@ public class Word extends Entity {
 	public Word(String wordstring,String image) {
 		setWordstring(wordstring);
 		setImage(image ,110,63);
+<<<<<<< HEAD
 		setSpeed(-1);
+||||||| merged common ancestors
+		setSpeed(-2);
+=======
+		setSpeed(-6);
+>>>>>>> 3d5d449367b63be3a5aa9b18e1db6aca9bd26324
 	}
 
 	public String getWordstring() {
