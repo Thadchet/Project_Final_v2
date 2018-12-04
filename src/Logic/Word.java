@@ -5,14 +5,13 @@ import javafx.scene.image.Image;
 
 public class Word extends Entity {
 	private String wordstring ;
-	public String image_path = ClassLoader.getSystemResource("image/").toString();
+	public String image_path = ClassLoader.getSystemResource("ImWord/").toString();
 	private boolean isVisible = true;
 	private boolean isDestory = false;
 
-	public Word() {
-		setImage(image_path + "rock.png", 100, 100);
-
-		// this.setPosition(300, 50);
+	public Word(String wordstring,String image) {
+		setWordstring(wordstring);
+		setImage(image ,110,63);
 	}
 
 	public String getWordstring() {
@@ -32,7 +31,7 @@ public class Word extends Entity {
 
 	@Override
 	public void setImage(String filename, int width, int height) {
-		Image i = new Image(filename, 60, 60, false, false);
+		Image i = new Image(filename,width,height, false, false);
 		setImage(i);
 	}
 

@@ -5,11 +5,15 @@ import javafx.scene.image.Image;
 
 public class Wizard extends Entity {
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
+	public int score ;
 	public Wizard() {
         setImage(image_path+"wizard1.gif",200,200);
-		
+		this.score = 0 ;
 		this.setPosition(300,500);
 	
+	}
+	public void addScore() {
+		this.score += 1 ;
 	}
 	
 	@Override
