@@ -17,7 +17,7 @@ import sharedObject.RenderableHolder;
 public class GameWindow extends Canvas {
 	private static AnimationTimer gamewindowanimation ;
 	private ArrayList<Word> wordList = new ArrayList<>();
-	private String[] data = {"cat","dog","win","create"};
+	private String[] data = {"cat","dog","win","create","java","progmeth"};
 	private String temp = "" ;
 	private GameScreen gamescreen ;
 	private Word word ;
@@ -48,7 +48,6 @@ public class GameWindow extends Canvas {
 				//System.out.println("s");
 				undateWord();
 				updateDetail();
-	
 			}
 		};
 		gamewindowanimation.start();
@@ -75,9 +74,8 @@ public class GameWindow extends Canvas {
 			System.out.println(data[i]);
 			System.out.println(image_path+data[i]+".png");
 			word = new Word(data[i],image_path+data[i]+".png");
-			
-			double px = 600 * Math.random();
-			double py = -900 * Math.random();
+			double px = Math.random() * 550 ;
+			double py = Math.random() * -750 ;
 
 			word.setPosition(px, py);
 			wordList.add(word);
