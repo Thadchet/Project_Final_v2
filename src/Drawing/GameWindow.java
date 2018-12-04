@@ -18,11 +18,13 @@ import sharedObject.RenderableHolder;
 public class GameWindow extends Canvas {
 	private static AnimationTimer gamewindowanimation;
 	private ArrayList<Word> wordList = new ArrayList<>();
-	private String[] data = { "cat", "dog", "win", "create", "java", "progmeth" };
+	private String[] data = { "cat", "dog", "win", "create", "java", "progmeth","chromatic","integral","unique","vertex","ceiling",
+							"adjacency","bipartitle","degree","edges","euler","hamilton","proof","iterator","recurrence","machine",
+							"priority","discrete","algorithms"};
 	private ArrayList<KeyCode> spell = new ArrayList<>();
 	public static String temp = "";
 	private GameScreen gamescreen;
-	private Word word;
+	private Word word; 
 	private Wizard wizard;
 	private GraphicsContext gc;
 	private Stage stage;
@@ -118,7 +120,7 @@ public class GameWindow extends Canvas {
 			System.out.println(image_path + data[i] + ".png");
 			word = new Word(data[i], image_path + data[i] + ".png");
 			double px = Math.random() * 450;
-			double py = Math.random() * -400;
+			double py = Math.random() * -2000;
 
 			word.setPosition(px, py);
 			wordList.add(word);

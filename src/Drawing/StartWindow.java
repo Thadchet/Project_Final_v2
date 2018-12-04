@@ -78,7 +78,7 @@ public class StartWindow {
 	}
 
 	public void setText(GraphicsContext gc) {
-		Font thefont = Font.font("Times New Roman", FontWeight.BOLD, 30);
+		Font thefont = Font.font("Agency FB", FontWeight.BOLD, 30);
 		gc.setFont(thefont);
 		gc.setFill(Color.YELLOW);
 		gc.fillText("PLAY", 240, 230);
