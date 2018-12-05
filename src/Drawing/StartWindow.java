@@ -136,8 +136,6 @@ public class StartWindow {
 		intro.stop();
 		GameWindow gamewindow = new GameWindow(primarystage);
 		gamewindow.drawGameWindow();
-		RenderableHolder.gameplay.play();
-		
 
 	}
 

@@ -3,7 +3,7 @@ package Drawing;
 import Logic.Wizard;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
+
 import javafx.scene.text.Font;
 import sharedObject.IRenderable;
 
@@ -35,7 +35,9 @@ public class GameScreen implements IRenderable{
 		Font font = new Font("Agency FB",30);
 		gc.setFont(font);
 		gc.fillText("Score : "+ String.valueOf(Wizard.score), 50, 50);
-		gc.fillText(GameWindow.temp,50,100);
+		Font typing = new Font("Agency FB",35);
+		gc.setFont(typing);
+		gc.fillText("TPYING : " +GameWindow.temp,50,740);
 		gc.drawImage(life,430,20,40,40);
 		gc.drawImage(skill1, 480, 120, 40, 40);
 		gc.drawImage(skill2, 480, 70, 40, 40);

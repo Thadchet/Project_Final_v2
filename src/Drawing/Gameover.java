@@ -2,24 +2,14 @@ package Drawing;
 
 import Logic.Background;
 import Logic.Wizard;
-import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
+
 import sharedObject.RenderableHolder;
 
 public class Gameover {
-	private static GraphicsContext gc;
-	private static boolean isframeUp = true;
-	private static AnimationTimer gameoveranimation;
+	
 	private static Background gameoverbg = new Background(RenderableHolder.image_path + "gameoverbg.png", 0, 0);
 
 	public Gameover() {

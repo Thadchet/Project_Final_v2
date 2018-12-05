@@ -1,12 +1,7 @@
 package sharedObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-
-import Drawing.GameWindow;
 import Logic.Wizard;
 import Logic.Word;
 import Logic.WordHeal;
@@ -20,12 +15,15 @@ public class RenderableHolder {
 	public static AudioClip fall;
 	public static AudioClip menu;
 	public static AudioClip wordDead;
-	public static AudioClip gameover ;
-	public static AudioClip gameplay ;
-	public static AudioClip heal ;
-	public static AudioClip skill1 ;
-	public static AudioClip skill2 ;
-	public static Image balloon ;
+	public static AudioClip gameover;
+	public static AudioClip gameplay;
+	public static AudioClip gameplay2 ;
+	public static AudioClip heal;
+	public static AudioClip skill1;
+	public static AudioClip skill2;
+	public static Image balloon;
+	public static Image explosion ;
+	public static Image spell ;
 	public static String image_path = ClassLoader.getSystemResource("image/").toString();
 	public static String sound_path = ClassLoader.getSystemResource("sound/").toString();
 	static {
@@ -41,16 +39,19 @@ public class RenderableHolder {
 		menu = new AudioClip(sound_path + "switch.mp3");
 		fall = new AudioClip(sound_path + "fall.mp3");
 		wordDead = new AudioClip(sound_path + "wordDead.mp3");
-		gameover = new AudioClip(sound_path +"gameover.mp3");
-		gameplay = new AudioClip(sound_path+"game.mp3");
-		balloon = new Image(image_path+"balloon.gif");
-		heal = new AudioClip(sound_path+"heal.mp3");
-		skill1 = new AudioClip(sound_path+"skill1.m4a");
-		skill2 = new AudioClip(sound_path+"skill2.mp3");
+		gameover = new AudioClip(sound_path + "gameover.mp3");
+		gameplay = new AudioClip(sound_path + "game.mp3");
+		gameplay2 = new AudioClip(sound_path+"game2.m4a");
+		balloon = new Image(image_path + "balloon.gif");
+		heal = new AudioClip(sound_path + "heal.mp3");
+		skill1 = new AudioClip(sound_path + "skill1.m4a");
+		skill2 = new AudioClip(sound_path + "skill2.mp3");
+		explosion = new Image(image_path+"explosion.gif");
+		spell = new Image(image_path+"spell.gif");
 	}
 
 	public void add(IRenderable entity) {
-		//System.out.println("add");
+		// System.out.println("add");
 		entities.add(entity);
 	}
 
@@ -62,7 +63,7 @@ public class RenderableHolder {
 		}
 	}
 
-	public void check(String temp) {
+	public Word check(String temp) {
 		for (IRenderable w : entities) {
 			if (w instanceof Wizard) {
 				for (IRenderable i : entities) {
@@ -70,22 +71,23 @@ public class RenderableHolder {
 						if (((Word) i).getWordstring().equalsIgnoreCase(temp)) {
 							((Wizard) w).addScore();
 							((Word) i).setIsvisible(false);
-							((Word) i).setIsdestory(true);
 							wordDead.play();
+							return (Word) i ;
 						}
 					}
-					if(i instanceof WordHeal) {
-						if(((WordHeal) i).getWordstring().equalsIgnoreCase(temp)) {
+					if (i instanceof WordHeal) {
+						if (((WordHeal) i).getWordstring().equalsIgnoreCase(temp)) {
 							((Wizard) w).addScore();
-							((Wizard) w).increaseLife();
-							((WordHeal) i).setIsvisible(false);
-							((WordHeal) i).setIsdestory(true);
+							((Word) i).setIsvisible(false);
 							heal.play();
+							return (Word) i ;		
 						}
-					}
+					}			
 				}
 			}
 		}
+		return null;
+		
 	}
 
 	public void draw(GraphicsContext gc) {
@@ -121,7 +123,7 @@ public class RenderableHolder {
 			if (i instanceof Word) {
 				((Word) i).setSpeed(-0.2);
 				Thread t = new Thread(new Runnable() {
-					
+
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
@@ -144,7 +146,7 @@ public class RenderableHolder {
 		for (IRenderable w : entities) {
 			if (w instanceof Wizard) {
 				for (IRenderable i : entities) {
-					if (i instanceof Word) {
+					if (i instanceof Word || i instanceof WordHeal) {
 						if (((Word) i).getY() > 0) {
 							((Word) i).setIsvisible(false);
 							((Word) i).setIsdestory(true);
@@ -156,19 +158,34 @@ public class RenderableHolder {
 			}
 		}
 	}
-	
+
+	public void updateWordHeal() {
+		for (IRenderable w : entities) {
+			if (w instanceof Wizard) {
+				for (IRenderable h : entities) {
+					if (h instanceof WordHeal) {
+						if (h.isDestroyed()) {
+							((Wizard) w).increaseLife();
+						}
+					}
+				}
+			}
+		}
+	}
+
 	public boolean isGameover() {
-		for(IRenderable w : entities) {
-			if(w instanceof Wizard) {
-				if(((Wizard) w).life == 0) {
+		for (IRenderable w : entities) {
+			if (w instanceof Wizard) {
+				if (((Wizard) w).life == 0) {
 					gameover.play();
 					System.out.println("dead");
-					return true ;
+					return true;
 				}
 			}
 		}
 		return false;
 	}
+
 	public void clear() {
 		entities.clear();
 	}
