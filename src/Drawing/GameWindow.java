@@ -24,8 +24,9 @@ public class GameWindow extends Canvas {
 			"vertex", "ceiling", "adjacency", "bipartitle", "degree", "edges", "euler", "hamilton", "proof", "iterator",
 			"recurrence", "machine", "priority", "discrete", "algorithms", "list", "set", "tuple", "git", "int",
 			"float", "double", "and", "or", "nfa", "dfa", "binary", "stack", "vector", "data", "insert", "erase",
-			"return", "method", "hash", "python", "sort" };
-	private String[] special = { "lol", "noop", "bnk" };
+			"return", "method", "hash", "python", "sort","array","index","address","node","null","parent","root","linux","window"
+			,"static","numpy","class","iot","tree","digit","json","simple","print"};
+	private String[] special = { "lol", "noob", "bnk" ,"cherprang", "prayut"};
 	private ArrayList<KeyCode> spell = new ArrayList<>();
 	public static String temp = "";
 	private GameScreen gamescreen;
