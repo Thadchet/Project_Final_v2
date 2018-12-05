@@ -55,6 +55,7 @@ public class StartWindow {
 
 		background.draw(gc);
 		wizard.draw(gc);
+		wizard.updatePos();
 		gc.setLineWidth(2);
 		gc.setFill(Color.WHITE);
 		gc.setStroke(Color.YELLOW);

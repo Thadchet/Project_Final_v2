@@ -7,10 +7,15 @@ public class Wizard extends Entity {
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
 	public static int score = 0;
 	public static int life = 70;
+	private double posx = 300 ;
+	private double posy = 400 ;
+	private double speedx = 2;
+	private double speedy = 2;
+
 	
 	public Wizard() {
 		setImage(image_path + "wizard1.gif", 170, 170);
-		this.setPosition(10, 570);
+		this.setPosition(300, 400);
 		
 	}
 	public void increaseLife() {
@@ -59,5 +64,21 @@ public class Wizard extends Entity {
 		// TODO Auto-generated method stub
 		return true;
 	}
+	
+	public void updatePos() {
+		this.posx += speedx ;
+		this.posy += speedy ;
+		if(this.posx>500) {
+			this.posx = -80 ;
+		}
+		if(this.posy<360) {
+			this.speedy = 1.5;
+		}
+		if(this.posy>440) {
+			this.speedy = -1.5;
+		}
+		setPosition(posx,posy);
+	}
+	
 
 }

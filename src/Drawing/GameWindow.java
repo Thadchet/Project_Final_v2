@@ -163,19 +163,54 @@ public class GameWindow extends Canvas {
 
 		for (int i = 0; i < data.length; i++) {
 			System.out.println(image_path + data[i] + ".png");
-			word = new Word(data[i], image_path + data[i] + ".png", 0.7);
+			word = new Word(data[i], image_path + data[i] + ".png", 0.5);
 			double px = Math.random() * 450;
-			double py = Math.random() * -4000;
+			double py = (Math.random() * -2000);
+			
+			if(i>56) {
+				word.setSpeed(word.getSpeed()-2.5);
+				py -=15000;
+			} else if(i>42) {
+				word.setSpeed(word.getSpeed()-2);
+				py -=12500;
+			} else if(i>42) {
+				word.setSpeed(word.getSpeed()-1.5);
+				py -=9500;
+			} else if(i>28) {
+				word.setSpeed(word.getSpeed()-1);
+				py -=6500;
+			} else if(i>14) {
+				word.setSpeed(word.getSpeed()-0.5);
+				py -=3500;
+			} 
 
 			word.setPosition(px, py);
 			wordList.add(word);
 			RenderableHolder.getInstance().add(word);
 		}
 		for (int i = 0; i < special.length; i++) {
-			wordheal = new WordHeal(special[i], image_path_special + special[i] + ".png", 1);
+			wordheal = new WordHeal(special[i], image_path_special + special[i] + ".png", 0.5);
 			System.out.println(image_path_special + special[i] + ".png");
 			double px = Math.random() * 450;
-			double py = Math.random() * -4000;
+			double py = (Math.random() * -2000);
+			
+			if(i>4) {
+				word.setSpeed(word.getSpeed()-2.5);
+				py -=15000;
+			} else if(i>3) {
+				word.setSpeed(word.getSpeed()-2);
+				py -=12500;
+			} else if(i>2) {
+				word.setSpeed(word.getSpeed()-1.5);
+				py -=9500;
+			} else if(i>1) {
+				word.setSpeed(word.getSpeed()-1);
+				py -=6500;
+			} else if(i>0) {
+				word.setSpeed(word.getSpeed()-0.5);
+				py -=3500;
+			} 
+			
 			wordheal.setPosition(px, py);
 			wordList.add(wordheal);
 			RenderableHolder.getInstance().add(wordheal);
