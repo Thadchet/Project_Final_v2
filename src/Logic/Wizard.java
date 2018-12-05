@@ -9,13 +9,13 @@ public class Wizard extends Entity {
 	public static int life = 70;
 	private double posx = 300 ;
 	private double posy = 400 ;
-	private double speedx = 2;
+	private double speedx = 2; 
 	private double speedy = 2;
 
 	
 	public Wizard() {
 		setImage(image_path + "wizard1.gif", 170, 170);
-		this.setPosition(300, 400);
+		this.setPosition(10,560);
 		
 	}
 	public void increaseLife() {
