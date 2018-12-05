@@ -35,7 +35,7 @@ public class FireBall extends Entity implements IRenderable {
 		// TODO Auto-generated method stub
 		
 		if (isVisible() && i < 1 ) {
-			gc.drawImage(RenderableHolder.spell,120+dXY*cos*i,640-dXY*sin*i ,20,20);
+			gc.drawImage(RenderableHolder.spell,120+dXY*cos*i-60,640-dXY*sin*i ,20,20);
 		}
 		i = i + 0.1 ;
 		if(i > 1) {
