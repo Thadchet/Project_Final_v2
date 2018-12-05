@@ -35,7 +35,7 @@ public class FireBall extends Entity implements IRenderable {
 		// TODO Auto-generated method stub
 		
 		if (isVisible() && i < 1 ) {
-			gc.drawImage(RenderableHolder.spell,120+dXY*cos*i-70,640-dXY*sin*i ,20,20);
+			gc.drawImage(RenderableHolder.spell,bX+110+dXY*cos*i-70,bY+70-dXY*sin*i ,20,20);
 		}
 		i = i + 0.1 ;
 		if(i > 1) {
@@ -74,6 +74,11 @@ public class FireBall extends Entity implements IRenderable {
 
 	public void setIsdestory(boolean isDestory) {
 		this.isDestory = isDestory;
+	}
+	
+	public void updatePoswiz(double x, double y) {
+		this.bX = x;
+		this.bY = y;
 	}
 
 }

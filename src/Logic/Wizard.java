@@ -65,7 +65,7 @@ public class Wizard extends Entity {
 		return true;
 	}
 	
-	public void updatePos() {
+	public void updatePosstart() {
 		this.posx += speedx ;
 		this.posy += speedy ;
 		if(this.posx>500) {
@@ -79,6 +79,37 @@ public class Wizard extends Entity {
 		}
 		setPosition(posx,posy);
 	}
+	
+	public void updatePosren() {
+		this.posx += speedx ;
+		this.posy += speedy ;
+		if(this.posy>500) {
+			this.speedy = -1.5;
+		}
+		if(this.posy<100) {
+			this.speedy = 1.5;
+		}
+		if(this.posx< 0) {
+			this.speedx = 1.5;
+		}
+		if(this.posx>410) {
+			this.speedx = -1.5;
+		}
+		setPosition(posx,posy);
+	}
+	public double getPosx() {
+		return posx;
+	}
+	public void setPosx(double posx) {
+		this.posx = posx;
+	}
+	public double getPosy() {
+		return posy;
+	}
+	public void setPosy(double posy) {
+		this.posy = posy;
+	}
+	
 	
 
 }
