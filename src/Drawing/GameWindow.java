@@ -127,7 +127,7 @@ public class GameWindow extends Canvas {
 						// System.out.println(String.valueOf(word.getX())+" "
 						// +String.valueOf(word.getY()));
 						if (word != null) {
-							fireball = new FireBall(word.getX(), word.getY());
+							fireball = new FireBall(word.getX(), word.getY(),wizard.getX(),wizard.getY());
 						}
 						RenderableHolder.getInstance().add(fireball);
 						temp = "";

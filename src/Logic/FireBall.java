@@ -19,12 +19,13 @@ public class FireBall extends Entity implements IRenderable {
 	private double cos ;
 	private double sin ;
 
-	public FireBall(double x, double y) {
-		super(x,y);
-		this.bX = 10;
-		this.bY = 570;
-		this.dX = Math.abs(x-bX);
-		this.dY = Math.abs(y-bY);
+	public FireBall(double x, double y,double bX ,double bY) {
+		super(x,y); // terminate of object
+		this.dX = x-bX ;
+		this.dY = y-bY ;
+		this.bX = bX ;
+		this.bY = bY ;
+		
 		this.dXY = Math.sqrt(Math.pow(dX, 2) + Math.pow(dY, 2));
 		this.sin = dY/dXY ;
 		this.cos = dX/dXY ;
@@ -35,13 +36,7 @@ public class FireBall extends Entity implements IRenderable {
 		// TODO Auto-generated method stub
 		
 		if (isVisible() && i < 1 ) {
-<<<<<<< HEAD
-			gc.drawImage(RenderableHolder.spell,bX+110+dXY*cos*i-70,bY+70-dXY*sin*i ,20,20);
-||||||| merged common ancestors
-			gc.drawImage(RenderableHolder.spell,120+dXY*cos*i-70,640-dXY*sin*i ,20,20);
-=======
-			gc.drawImage(RenderableHolder.spell,120+dXY*cos*i-60,640-dXY*sin*i ,20,20);
->>>>>>> 4b57225d8bdeb5f1db09dd2f40f0a610a3f692d7
+			gc.drawImage(RenderableHolder.spell,bX+170+dXY*cos*i-110,bY+dXY*sin*i+40 ,20,20);
 		}
 		i = i + 0.1 ;
 		if(i > 1) {

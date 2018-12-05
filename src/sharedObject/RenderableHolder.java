@@ -135,11 +135,6 @@ public class RenderableHolder {
 		for (IRenderable w : entities) {
 			if (w instanceof Wizard) {
 				((Wizard) w).updatePosren();
-				for(IRenderable f : entities) {
-					if (f instanceof FireBall) {
-						((FireBall) f).updatePoswiz(((Wizard) w).getPosx(), ((Wizard) w).getPosy());;
-					}
-				}
 				for (IRenderable i : entities) {
 					if (i instanceof Word) {
 						((Word) i).updatePos(((Word) i).getSpeed());
