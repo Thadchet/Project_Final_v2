@@ -24,8 +24,8 @@ public class GameScreen implements IRenderable{
 		bg = new Image(image_path+"bg.gif");
 		life = new Image(image_path+"life.gif");
 		laser = new Image(image_path+"laser.gif");
-		skill2 = new Image(image_path+"1543940990435.jpg");
-		skill1 = new Image(image_path+"1543941003914.jpg");
+		skill2 = new Image(image_path+"skill1.jpg");
+		skill1 = new Image(image_path+"skill2.jpg");
 		skillused = new Image(image_path+"skillused.png");
 	}
 	@Override
@@ -37,13 +37,13 @@ public class GameScreen implements IRenderable{
 		gc.fillText("Score : "+ String.valueOf(Wizard.score), 50, 50);
 		gc.fillText(GameWindow.temp,50,100);
 		gc.drawImage(life,430,20,40,40);
-		gc.drawImage(skill1, 440, 70, 40, 40);
-		gc.drawImage(skill2, 440, 120, 40, 40);
+		gc.drawImage(skill1, 480, 120, 40, 40);
+		gc.drawImage(skill2, 480, 70, 40, 40);
 		if(GameWindow.skillused1) {
-			gc.drawImage(skillused, 440, 70,40,40);
+			gc.drawImage(skillused, 480, 70,40,40);
 		}
 		if(GameWindow.skillused2) {
-			gc.drawImage(skillused, 440, 120,40,40);
+			gc.drawImage(skillused, 480, 120,40,40);
 		}
 		
 		gc.fillText(" x "+ String.valueOf(Wizard.life), 470,50);

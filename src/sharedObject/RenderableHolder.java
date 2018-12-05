@@ -9,7 +9,9 @@ import java.util.List;
 import Drawing.GameWindow;
 import Logic.Wizard;
 import Logic.Word;
+import Logic.WordHeal;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 
 public class RenderableHolder {
@@ -20,6 +22,10 @@ public class RenderableHolder {
 	public static AudioClip wordDead;
 	public static AudioClip gameover ;
 	public static AudioClip gameplay ;
+	public static AudioClip heal ;
+	public static AudioClip skill1 ;
+	public static AudioClip skill2 ;
+	public static Image balloon ;
 	public static String image_path = ClassLoader.getSystemResource("image/").toString();
 	public static String sound_path = ClassLoader.getSystemResource("sound/").toString();
 	static {
@@ -37,7 +43,10 @@ public class RenderableHolder {
 		wordDead = new AudioClip(sound_path + "wordDead.mp3");
 		gameover = new AudioClip(sound_path +"gameover.mp3");
 		gameplay = new AudioClip(sound_path+"game.mp3");
-
+		balloon = new Image(image_path+"balloon.gif");
+		heal = new AudioClip(sound_path+"heal.mp3");
+		skill1 = new AudioClip(sound_path+"skill1.m4a");
+		skill2 = new AudioClip(sound_path+"skill2.mp3");
 	}
 
 	public void add(IRenderable entity) {
@@ -63,6 +72,15 @@ public class RenderableHolder {
 							((Word) i).setIsvisible(false);
 							((Word) i).setIsdestory(true);
 							wordDead.play();
+						}
+					}
+					if(i instanceof WordHeal) {
+						if(((WordHeal) i).getWordstring().equalsIgnoreCase(temp)) {
+							((Wizard) w).addScore();
+							((Wizard) w).increaseLife();
+							((WordHeal) i).setIsvisible(false);
+							((WordHeal) i).setIsdestory(true);
+							heal.play();
 						}
 					}
 				}
@@ -117,6 +135,7 @@ public class RenderableHolder {
 					}
 				});
 				t.start();
+				skill1.play();
 			}
 		}
 	}
@@ -130,6 +149,7 @@ public class RenderableHolder {
 							((Word) i).setIsvisible(false);
 							((Word) i).setIsdestory(true);
 							((Wizard) w).addScore();
+							skill2.play();
 						}
 					}
 				}

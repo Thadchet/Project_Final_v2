@@ -6,12 +6,15 @@ import javafx.scene.image.Image;
 public class Wizard extends Entity {
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
 	public static int score = 0;
-	public static int life = 10;
+	public static int life = 70;
 
 	public Wizard() {
 		setImage(image_path + "wizard1.gif", 200, 200);
 		this.setPosition(300, 500);
 		
+	}
+	public void increaseLife() {
+		life += 2 ;
 	}
 
 	public void decreaseLife() {

@@ -18,10 +18,10 @@ public class Word extends Entity {
 		this.speed = speed;
 	}
 
-	public Word(String wordstring,String image) {
+	public Word(String wordstring,String image,double speed) {
 		setWordstring(wordstring);
 		setImage(image ,110,63);
-		setSpeed(-1);
+		setSpeed(-speed);
 	}
 
 	public String getWordstring() {

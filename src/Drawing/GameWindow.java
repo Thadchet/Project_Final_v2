@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Logic.Wizard;
 import Logic.Word;
+import Logic.WordHeal;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -23,20 +24,23 @@ public class GameWindow extends Canvas {
 			"recurrence", "machine", "priority", "discrete", "algorithms", "list", "set", "tuple", "git", "int",
 			"float", "double", "and", "or", "nfa", "dfa", "binary", "stack", "vector", "data", "insert", "erase",
 			"return", "method", "hash", "python", "sort" };
+	private String[] special = { "lol","noop","bnk"};
 	private ArrayList<KeyCode> spell = new ArrayList<>();
 	public static String temp = "";
 	private GameScreen gamescreen;
 	private Word word;
+	private WordHeal wordheal;
 	private Wizard wizard;
 	private GraphicsContext gc;
 	private Stage stage;
 	private Scene scene;
 	public String image_path = ClassLoader.getSystemResource("ImWord/").toString();
+	public String image_path_special = ClassLoader.getSystemResource("ImWordspecial/").toString();
 	public static int score;
 	private boolean isGameover = false;
 	public static boolean skillused1 = false;
 	public static boolean skillused2 = false;
-	public static int high_score = 0 ;
+	public static int high_score = 0;
 
 	public GameWindow(Stage stage) {
 		this.stage = stage;
@@ -63,6 +67,7 @@ public class GameWindow extends Canvas {
 				updateWord();
 				updateDetail();
 				isGameover();
+				isWinner();
 			}
 		};
 		gamewindowanimation.start();
@@ -139,13 +144,22 @@ public class GameWindow extends Canvas {
 
 		for (int i = 0; i < data.length; i++) {
 			System.out.println(image_path + data[i] + ".png");
-			word = new Word(data[i], image_path + data[i] + ".png");
+			word = new Word(data[i], image_path + data[i] + ".png",2);
 			double px = Math.random() * 450;
 			double py = Math.random() * -4000;
 
 			word.setPosition(px, py);
 			wordList.add(word);
 			RenderableHolder.getInstance().add(word);
+		}
+		for (int i = 0; i < special.length; i++) {
+			wordheal = new WordHeal(special[i], image_path_special + special[i] + ".png",1);
+			System.out.println(image_path_special + special[i] + ".png");
+			double px = Math.random() * 450;
+			double py = Math.random() * -4000;
+			wordheal.setPosition(px, py);
+			wordList.add(wordheal);
+			RenderableHolder.getInstance().add(wordheal);
 		}
 	}
 
@@ -175,9 +189,20 @@ public class GameWindow extends Canvas {
 			setHighscore();
 		}
 	}
+
 	public void setHighscore() {
-		if(high_score < wizard.score) {
-			high_score = wizard.score ;
+		if (high_score < wizard.score) {
+			high_score = wizard.score;
+		}
+	}
+
+	public void isWinner() {
+		if (score == 45) {
+			gamewindowanimation.stop();
+			setHighscore();
+			RenderableHolder.getInstance().clear();
+			RenderableHolder.gameplay.stop();
+			///////
 		}
 	}
 
