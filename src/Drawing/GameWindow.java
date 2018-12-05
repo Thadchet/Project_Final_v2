@@ -71,14 +71,14 @@ public class GameWindow extends Canvas {
 				updateDetail();
 				isGameover();
 				isWinner();
-				ismusicPlay();
+				Playmusic2();
 			}
 		};
 		gamewindowanimation.start();
 	}
 
-	public void ismusicPlay() {
-		if (!RenderableHolder.gameplay2.isPlaying()) {
+	public void Playmusic2() {
+		if ((!RenderableHolder.gameplay2.isPlaying())&&(!isGameover) ) {
 			RenderableHolder.gameplay2.play();
 		}
 	}
@@ -236,12 +236,13 @@ public class GameWindow extends Canvas {
 
 	public void isGameover() {
 		if (RenderableHolder.getInstance().isGameover()) {
+			RenderableHolder.gameplay2.stop();
+			RenderableHolder.gameplay.stop();
 			RenderableHolder.gameover.play();
 			gamewindowanimation.stop();
 			RenderableHolder.getInstance().clear();
 			Gameover.startgameover(gc);
 			isGameover = true;
-			RenderableHolder.gameplay.stop();
 			setHighscore();
 		}
 	}

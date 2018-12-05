@@ -214,7 +214,7 @@ public class RenderableHolder {
 		for (IRenderable w : entities) {
 			if (w instanceof Wizard) {
 				if (((Wizard) w).life == 0) {
-					gameover.play();
+					//gameover.play();
 					System.out.println("dead");
 					return true;
 				}
