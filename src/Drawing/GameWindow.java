@@ -99,9 +99,6 @@ public class GameWindow extends Canvas {
 							skillused2 = true;
 						}
 					}
-					if (KeyEvent.getCode().equals(KeyCode.F3)) {
-						////
-					}
 
 				} else {
 					if (!KeyEvent.getCode().equals(KeyCode.ENTER)) {
@@ -241,7 +238,7 @@ public class GameWindow extends Canvas {
 			RenderableHolder.getInstance().clear();
 			Gameover.startgameover(gc);
 			isGameover = true;
-			RenderableHolder.gameplay.stop();
+			RenderableHolder.gameplay2.stop();
 			setHighscore();
 		}
 	}
@@ -257,7 +254,7 @@ public class GameWindow extends Canvas {
 			gamewindowanimation.stop();
 			setHighscore();
 			RenderableHolder.getInstance().clear();
-			RenderableHolder.gameplay.stop();
+			RenderableHolder.gameplay2.stop();
 			///////
 		}
 	}
@@ -265,6 +262,5 @@ public class GameWindow extends Canvas {
 	public void setSpell() {
 		spell.add(KeyCode.F1);
 		spell.add(KeyCode.F2);
-		spell.add(KeyCode.F3);
 	}
 }

@@ -2,7 +2,6 @@ package Drawing;
 
 import Logic.Background;
 import Logic.Wizard;
-import input.InputUtility;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.Event;
