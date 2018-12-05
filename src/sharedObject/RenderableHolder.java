@@ -105,10 +105,10 @@ public class RenderableHolder {
 										e.printStackTrace();
 									}
 									((Word) i).setIsdestory(true);
+									heal.play();
 								}
 							});
 							t.start();
-							heal.play();
 							return (Word) i;
 						}
 					}
