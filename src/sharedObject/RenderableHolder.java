@@ -157,7 +157,8 @@ public class RenderableHolder {
 
 	public void reduceSpeed() {
 		for (IRenderable i : entities) {
-			if (i instanceof Word) {
+			if (i instanceof Word ) {
+				double lastspeed = ((Word)i).getSpeed();
 				((Word) i).setSpeed(-0.2);
 				Thread t = new Thread(new Runnable() {
 
@@ -170,11 +171,12 @@ public class RenderableHolder {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						((Word) i).setSpeed(-1);
+						((Word) i).setSpeed(lastspeed);
 					}
 				});
 				t.start();
 				skill1.play();
+				
 			}
 		}
 	}

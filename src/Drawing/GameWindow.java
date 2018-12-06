@@ -160,7 +160,7 @@ public class GameWindow extends Canvas {
 
 		for (int i = 0; i < data.length; i++) {
 			System.out.println(image_path + data[i] + ".png");
-			word = new Word(data[i], image_path + data[i] + ".png", 0.5);
+			word = new Word(data[i], image_path + data[i] + ".png", 1);
 			double px = Math.random() * 450;
 			double py = (Math.random() * -2000);
 			
