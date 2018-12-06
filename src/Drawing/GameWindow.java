@@ -14,6 +14,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
 public class GameWindow extends Canvas {
@@ -21,11 +22,11 @@ public class GameWindow extends Canvas {
 	private Random randomGenerator;
 	private ArrayList<Word> wordList = new ArrayList<>();
 	private String[] data = { "cat", "dog", "win", "create", "java", "progmeth", "chromatic", "integral", "unique",
-			"vertex", "ceiling", "adjacency", "bipartitle", "degree", "edges", "euler", "hamilton", "proof", "iterator",
+			"vertex", "ceiling", "adjacency", "bipartite", "degree", "edges", "euler", "hamilton", "proof", "iterator",
 			"recurrence", "machine", "priority", "discrete", "algorithms", "list", "set", "tuple", "git", "int",
 			"float", "double", "and", "or", "nfa", "dfa", "binary", "stack", "vector", "data", "insert", "erase",
 			"return", "method", "hash", "python", "sort", "array", "index", "address", "node", "null", "parent", "root",
-			"linux", "window", "static", "numpy", "class", "iot", "tree", "digit", "json", "simple", "print" };
+			"linux", "window", "static", "numpy", "class", "iot", "tree", "digit", "json", "simple", "print","swap" };
 	private String[] special = { "lol", "noob", "bnk", "cherprang", "prayut" };
 	private ArrayList<KeyCode> spell = new ArrayList<>();
 	public static String temp = "";
@@ -85,6 +86,7 @@ public class GameWindow extends Canvas {
 
 	public void addEvent(GraphicsContext gc) {
 		this.setOnKeyPressed((KeyEvent) -> {
+			RenderableHolder.getInstance().test();
 			if (!isGameover) {
 				if (spell.contains(KeyEvent.getCode())) {
 					if (KeyEvent.getCode().equals(KeyCode.F1)) {

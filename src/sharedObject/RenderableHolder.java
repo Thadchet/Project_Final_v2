@@ -238,4 +238,10 @@ public class RenderableHolder {
 	public void clear() {
 		entities.clear();
 	}
+	public void test() {
+		for(IRenderable i : entities) {
+			if(i instanceof Word)
+				System.out.println(((Word) i).getWordstring() + " " +((Word) i).getX());
+		}
+	}
 }
