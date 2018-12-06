@@ -200,7 +200,7 @@ public class RenderableHolder {
 			if (w instanceof Wizard) {
 				for (IRenderable h : entities) {
 					if (h instanceof WordHeal) {
-						if (h.isDestroyed()) {
+						if (h.isDestroyed()&& ((WordHeal)h).getY()<650) {
 							((Wizard) w).increaseLife();
 						}
 					}
@@ -216,7 +216,7 @@ public class RenderableHolder {
 					System.out.println("gameover");
 					return true;
 				}
-				if(((Wizard) w).score == 75) {
+				if(isWinner()) {
 					System.out.println("winner");
 					return true ;
 				}
@@ -226,13 +226,11 @@ public class RenderableHolder {
 	}
 	public boolean isWinner() {
 		for(IRenderable w : entities) {
-			if( w instanceof Wizard) {
-				if(((Wizard) w).score == 75) {
-					return true ;
-				}
+			if( w instanceof Word) {
+				return false;
 			}
 		}
-		return false ;
+		return true ;
 	}
 
 	public void clear() {

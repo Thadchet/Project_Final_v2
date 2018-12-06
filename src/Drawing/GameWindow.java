@@ -141,7 +141,7 @@ public class GameWindow extends Canvas {
 					StartWindow startwindow = new StartWindow(stage);
 					startwindow.startAnimation();
 					isGameover = false;
-					wizard.life = 5;
+					wizard.life = 10;
 					wizard.score = 0;
 				}
 			}
@@ -163,26 +163,26 @@ public class GameWindow extends Canvas {
 		System.out.println(data.length);
 		for (int i = 0; i < data.length; i++) {
 			System.out.println(image_path + data[i] + ".png");
-			word = new Word(data[i], image_path + data[i] + ".png", 100);
+			word = new Word(data[i], image_path + data[i] + ".png", 1);
 			double px = Math.random() * 450;
 			double py = (Math.random() * -2000);
 
 			if (i > 56) {
-				word.setSpeed(word.getSpeed() - 100);
+				word.setSpeed(word.getSpeed() - 2);
 				py -= 15000;
 			} else if (i > 42) {
-				word.setSpeed(word.getSpeed() - 100);
-				py -= 9500;
+				word.setSpeed(word.getSpeed() - 1.5);
+				py -= 11000;
 			} else if (i > 28) {
-				word.setSpeed(word.getSpeed() - 100);
+				word.setSpeed(word.getSpeed() - 1);
 				py -= 6500;
 			} else if (i > 14) {
-				word.setSpeed(word.getSpeed() - 100);
+				word.setSpeed(word.getSpeed() - 0.5);
 				py -= 3500;
 			}
-			if(i==data.length) {
-				word.setSpeed(-3.5);
-				py -= 15000;
+			if(i==data.length-1) {
+				word.setSpeed(-3);
+				py -= 14000;
 			}
 
 			word.setPosition(px, py);
@@ -190,22 +190,22 @@ public class GameWindow extends Canvas {
 			RenderableHolder.getInstance().add(word);
 		}
 		for (int i = 0; i < special.length; i++) {
-			wordheal = new WordHeal(special[i], image_path_special + special[i] + ".png", 100);
+			wordheal = new WordHeal(special[i], image_path_special + special[i] + ".png", 1);
 			System.out.println(image_path_special + special[i] + ".png");
 			double px = Math.random() * 450;
 			double py = (Math.random() * -2000);
 
 			if (i > 4) {
-				word.setSpeed(word.getSpeed() - 100);
+				word.setSpeed(word.getSpeed() - 2);
 				py -= 15000;
 			} else if (i > 3) {
-				word.setSpeed(word.getSpeed() - 100);
-				py -= 9500;
+				word.setSpeed(word.getSpeed() - 1.5);
+				py -= 11000;
 			} else if (i > 2) {
-				word.setSpeed(word.getSpeed() - 100);
+				word.setSpeed(word.getSpeed() - 1);
 				py -= 6500;
 			} else if (i > 1) {
-				word.setSpeed(word.getSpeed() - 100);
+				word.setSpeed(word.getSpeed() - 0.5);
 				py -= 3500;
 			}
 
