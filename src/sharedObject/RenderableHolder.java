@@ -20,6 +20,7 @@ public class RenderableHolder {
 	public static AudioClip gameover;
 	public static AudioClip gameplay;
 	public static AudioClip gameplay2;
+	public static AudioClip winner ;
 	public static AudioClip heal;
 	public static AudioClip skill1;
 	public static AudioClip skill2;
@@ -50,6 +51,7 @@ public class RenderableHolder {
 		skill2 = new AudioClip(sound_path + "skill2.mp3");
 		explosion = new Image(image_path + "explosion.gif");
 		spell = new Image(image_path + "spell.gif");
+		winner = new AudioClip(sound_path+"winner.mp3");
 	}
 
 	public void add(IRenderable entity) {
@@ -205,7 +207,7 @@ public class RenderableHolder {
 		}
 	}
 
-	public boolean isGameover() {
+	public boolean isGamefinish() {
 		for (IRenderable w : entities) {
 			if (w instanceof Wizard) {
 				if (((Wizard) w).life == 0) {
@@ -213,9 +215,23 @@ public class RenderableHolder {
 					System.out.println("dead");
 					return true;
 				}
+				if(((Wizard) w).score == 75) {
+					System.out.println("winner");
+					return true ;
+				}
 			}
 		}
 		return false;
+	}
+	public boolean isWinner() {
+		for(IRenderable w : entities) {
+			if( w instanceof Wizard) {
+				if(((Wizard) w).score == 75) {
+					return true ;
+				}
+			}
+		}
+		return false ;
 	}
 
 	public void clear() {

@@ -22,7 +22,7 @@ public class Gameover {
 			public void run() {
 				int i = 1 ;
 				// TODO Auto-generated method stub
-				setBackground1(gc);
+				setTextGameover(gc);
 				try {
 					Thread.sleep(3000);
 				} catch (Exception e) {
@@ -30,13 +30,34 @@ public class Gameover {
 					e.printStackTrace();
 				}
 				System.out.println(i);
-				setBackground2(gc);
+				setTextGameFinish(gc);
+			}
+		});
+		thread.start();
+	}
+	
+	public static void drawGameWinner(GraphicsContext gc) {
+		Thread thread = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				int i = 1 ;
+				// TODO Auto-generated method stub
+				setTextGameWinner(gc);
+				try {
+					Thread.sleep(3000);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println(i);
+				setTextGameFinish(gc);
 			}
 		});
 		thread.start();
 	}
 
-	public static void setBackground1(GraphicsContext gc) {
+	public static void setTextGameover(GraphicsContext gc) {
 		gc.setFill(Color.ORANGERED);
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(2);
@@ -45,8 +66,17 @@ public class Gameover {
 		gc.fillText("GAME OVER", 100, 150);
 		gc.strokeText("GAME OVER", 100, 150);
 	} 
+	public static void setTextGameWinner(GraphicsContext gc) {
+		gc.setFill(Color.ORANGERED);
+		gc.setStroke(Color.BLACK);
+		gc.setLineWidth(2);
+		Font font = new Font("Agency FB", 100);
+		gc.setFont(font);
+		gc.fillText("WINNER", 100, 150);
+		gc.strokeText("WINNER", 100, 150);
+	} 
 
-	public static void setBackground2(GraphicsContext gc) {
+	public static void setTextGameFinish(GraphicsContext gc) {
 		gameoverbg.draw(gc);
 		gc.setFill(Color.PAPAYAWHIP);
 		gc.setStroke(Color.BLACK);
@@ -62,7 +92,7 @@ public class Gameover {
 		gc.fillText(String.valueOf(GameWindow.high_score), 260, 450);
 	}
 
-	public static void startgameover(GraphicsContext gc) {
+	public static void startgamefinish(GraphicsContext gc) {
 		drawGameover(gc);
 	}
 

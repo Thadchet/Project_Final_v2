@@ -24,9 +24,9 @@ public class GameWindow extends Canvas {
 			"vertex", "ceiling", "adjacency", "bipartitle", "degree", "edges", "euler", "hamilton", "proof", "iterator",
 			"recurrence", "machine", "priority", "discrete", "algorithms", "list", "set", "tuple", "git", "int",
 			"float", "double", "and", "or", "nfa", "dfa", "binary", "stack", "vector", "data", "insert", "erase",
-			"return", "method", "hash", "python", "sort","array","index","address","node","null","parent","root","linux","window"
-			,"static","numpy","class","iot","tree","digit","json","simple","print"};
-	private String[] special = { "lol", "noob", "bnk" ,"cherprang", "prayut"};
+			"return", "method", "hash", "python", "sort", "array", "index", "address", "node", "null", "parent", "root",
+			"linux", "window", "static", "numpy", "class", "iot", "tree", "digit", "json", "simple", "print" };
+	private String[] special = { "lol", "noob", "bnk", "cherprang", "prayut" };
 	private ArrayList<KeyCode> spell = new ArrayList<>();
 	public static String temp = "";
 	private GameScreen gamescreen;
@@ -69,7 +69,7 @@ public class GameWindow extends Canvas {
 				// TODO Auto-generated method stub
 				updateWord();
 				updateDetail();
-				isGameover();
+				isGamefinish();
 				isWinner();
 				Playmusic2();
 			}
@@ -78,7 +78,7 @@ public class GameWindow extends Canvas {
 	}
 
 	public void Playmusic2() {
-		if ((!RenderableHolder.gameplay2.isPlaying())&&(!isGameover) ) {
+		if ((!RenderableHolder.gameplay2.isPlaying()) && (!isGameover)) {
 			RenderableHolder.gameplay2.play();
 		}
 	}
@@ -127,9 +127,10 @@ public class GameWindow extends Canvas {
 						// System.out.println(String.valueOf(word.getX())+" "
 						// +String.valueOf(word.getY()));
 						if (word != null) {
-							fireball = new FireBall(word.getX(), word.getY(),wizard.getX(),wizard.getY());
+							fireball = new FireBall(word.getX(), word.getY(), wizard.getX(), wizard.getY());
+							RenderableHolder.getInstance().add(fireball);
 						}
-						RenderableHolder.getInstance().add(fireball);
+
 						temp = "";
 					}
 				}
@@ -163,23 +164,23 @@ public class GameWindow extends Canvas {
 			word = new Word(data[i], image_path + data[i] + ".png", 0.5);
 			double px = Math.random() * 450;
 			double py = (Math.random() * -2000);
-			
-			if(i>56) {
-				word.setSpeed(word.getSpeed()-2.5);
-				py -=15000;
-			} else if(i>42) {
-				word.setSpeed(word.getSpeed()-2);
-				py -=12500;
-			} else if(i>42) {
-				word.setSpeed(word.getSpeed()-1.5);
-				py -=9500;
-			} else if(i>28) {
-				word.setSpeed(word.getSpeed()-1);
-				py -=6500;
-			} else if(i>14) {
-				word.setSpeed(word.getSpeed()-0.5);
-				py -=3500;
-			} 
+
+			if (i > 56) {
+				word.setSpeed(word.getSpeed() - 2.5);
+				py -= 15000;
+			} else if (i > 42) {
+				word.setSpeed(word.getSpeed() - 2);
+				py -= 12500;
+			} else if (i > 42) {
+				word.setSpeed(word.getSpeed() - 1.5);
+				py -= 9500;
+			} else if (i > 28) {
+				word.setSpeed(word.getSpeed() - 1);
+				py -= 6500;
+			} else if (i > 14) {
+				word.setSpeed(word.getSpeed() - 0.5);
+				py -= 3500;
+			}
 
 			word.setPosition(px, py);
 			wordList.add(word);
@@ -190,24 +191,24 @@ public class GameWindow extends Canvas {
 			System.out.println(image_path_special + special[i] + ".png");
 			double px = Math.random() * 450;
 			double py = (Math.random() * -2000);
-			
-			if(i>4) {
-				word.setSpeed(word.getSpeed()-2.5);
-				py -=15000;
-			} else if(i>3) {
-				word.setSpeed(word.getSpeed()-2);
-				py -=12500;
-			} else if(i>2) {
-				word.setSpeed(word.getSpeed()-1.5);
-				py -=9500;
-			} else if(i>1) {
-				word.setSpeed(word.getSpeed()-1);
-				py -=6500;
-			} else if(i>0) {
-				word.setSpeed(word.getSpeed()-0.5);
-				py -=3500;
-			} 
-			
+
+			if (i > 4) {
+				word.setSpeed(word.getSpeed() - 2.5);
+				py -= 15000;
+			} else if (i > 3) {
+				word.setSpeed(word.getSpeed() - 2);
+				py -= 12500;
+			} else if (i > 2) {
+				word.setSpeed(word.getSpeed() - 1.5);
+				py -= 9500;
+			} else if (i > 1) {
+				word.setSpeed(word.getSpeed() - 1);
+				py -= 6500;
+			} else if (i > 0) {
+				word.setSpeed(word.getSpeed() - 0.5);
+				py -= 3500;
+			}
+
 			wordheal.setPosition(px, py);
 			wordList.add(wordheal);
 			RenderableHolder.getInstance().add(wordheal);
@@ -231,16 +232,24 @@ public class GameWindow extends Canvas {
 		RenderableHolder.getInstance().update();
 	}
 
-	public void isGameover() {
-		if (RenderableHolder.getInstance().isGameover()) {
-			RenderableHolder.gameplay2.stop();
-			RenderableHolder.gameplay.stop();
-			RenderableHolder.gameover.play();
+	public void isGamefinish() {
+		if (RenderableHolder.getInstance().isGamefinish()) {
 			gamewindowanimation.stop();
 			RenderableHolder.getInstance().clear();
-			Gameover.startgameover(gc);
-			isGameover = true;
-			setHighscore();
+			RenderableHolder.gameplay2.stop();
+			RenderableHolder.gameplay.stop();
+			if (!RenderableHolder.getInstance().isWinner()) {
+				RenderableHolder.gameover.play();
+				Gameover.startgamefinish(gc);
+				isGameover = true;
+				setHighscore();
+			}
+			else {
+				RenderableHolder.winner.play();
+				Gameover.startgamefinish(gc);
+				isGameover = false ;
+				setHighscore();
+			}
 		}
 	}
 
