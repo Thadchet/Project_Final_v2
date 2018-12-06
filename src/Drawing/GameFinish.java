@@ -8,11 +8,11 @@ import javafx.scene.text.Font;
 
 import sharedObject.RenderableHolder;
 
-public class Gameover {
+public class GameFinish {
 
 	private static Background gameoverbg = new Background(RenderableHolder.image_path + "gameoverbg.png", 0, 0);
 
-	public Gameover() {
+	public GameFinish() {
 	}
 
 	public static void drawGameover(GraphicsContext gc) {

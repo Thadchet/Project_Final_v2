@@ -239,13 +239,13 @@ public class GameWindow extends Canvas {
 			if (!RenderableHolder.getInstance().isWinner()) {
 				RenderableHolder.gameover.play();
 				isGameover = true;
-				Gameover.startgamefinish(gc,isGameover);
+				GameFinish.startgamefinish(gc,isGameover);
 				setHighscore();
 			}
 			else {
 				RenderableHolder.winner.play();
 				isGameover = false ;
-				Gameover.startgamefinish(gc,isGameover);
+				GameFinish.startgamefinish(gc,isGameover);
 				setHighscore();
 			}
 			RenderableHolder.getInstance().clear();
