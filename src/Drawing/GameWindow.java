@@ -169,9 +169,6 @@ public class GameWindow extends Canvas {
 				word.setSpeed(word.getSpeed() - 2.5);
 				py -= 15000;
 			} else if (i > 42) {
-				word.setSpeed(word.getSpeed() - 2);
-				py -= 12500;
-			} else if (i > 42) {
 				word.setSpeed(word.getSpeed() - 1.5);
 				py -= 9500;
 			} else if (i > 28) {
@@ -196,15 +193,12 @@ public class GameWindow extends Canvas {
 				word.setSpeed(word.getSpeed() - 2.5);
 				py -= 15000;
 			} else if (i > 3) {
-				word.setSpeed(word.getSpeed() - 2);
-				py -= 12500;
-			} else if (i > 2) {
 				word.setSpeed(word.getSpeed() - 1.5);
 				py -= 9500;
-			} else if (i > 1) {
+			} else if (i > 2) {
 				word.setSpeed(word.getSpeed() - 1);
 				py -= 6500;
-			} else if (i > 0) {
+			} else if (i > 1) {
 				word.setSpeed(word.getSpeed() - 0.5);
 				py -= 3500;
 			}

@@ -216,7 +216,7 @@ public class RenderableHolder {
 					System.out.println("gameover");
 					return true;
 				}
-				if(((Wizard) w).score == 1) {
+				if(((Wizard) w).score == 75) {
 					System.out.println("winner");
 					return true ;
 				}
@@ -227,7 +227,7 @@ public class RenderableHolder {
 	public boolean isWinner() {
 		for(IRenderable w : entities) {
 			if( w instanceof Wizard) {
-				if(((Wizard) w).score == 1) {
+				if(((Wizard) w).score == 75) {
 					return true ;
 				}
 			}
