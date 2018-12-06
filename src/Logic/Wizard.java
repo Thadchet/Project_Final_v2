@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 public class Wizard extends Entity {
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
 	public static int score = 0;
-	public static int life = 10;
+	public static int life = 100;
 	public static double posx = 300 ;
 	public static double posy = 400 ;
 	private double speedx = 2; 

@@ -178,6 +178,10 @@ public class GameWindow extends Canvas {
 				word.setSpeed(word.getSpeed() - 0.5);
 				py -= 3500;
 			}
+			if(i==data.length) {
+				word.setSpeed(-3.5);
+				py -= 15000;
+			}
 
 			word.setPosition(px, py);
 			wordList.add(word);
