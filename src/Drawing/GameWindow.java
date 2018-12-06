@@ -70,7 +70,6 @@ public class GameWindow extends Canvas {
 				updateWord();
 				updateDetail();
 				isGamefinish();
-				isWinner();
 				Playmusic2();
 			}
 		};
@@ -235,21 +234,21 @@ public class GameWindow extends Canvas {
 	public void isGamefinish() {
 		if (RenderableHolder.getInstance().isGamefinish()) {
 			gamewindowanimation.stop();
-			RenderableHolder.getInstance().clear();
 			RenderableHolder.gameplay2.stop();
 			RenderableHolder.gameplay.stop();
 			if (!RenderableHolder.getInstance().isWinner()) {
 				RenderableHolder.gameover.play();
-				Gameover.startgamefinish(gc);
 				isGameover = true;
+				Gameover.startgamefinish(gc,isGameover);
 				setHighscore();
 			}
 			else {
 				RenderableHolder.winner.play();
-				Gameover.startgamefinish(gc);
 				isGameover = false ;
+				Gameover.startgamefinish(gc,isGameover);
 				setHighscore();
 			}
+			RenderableHolder.getInstance().clear();
 		}
 	}
 
@@ -259,15 +258,6 @@ public class GameWindow extends Canvas {
 		}
 	}
 
-	public void isWinner() {
-		if (score == 45) {
-			gamewindowanimation.stop();
-			setHighscore();
-			RenderableHolder.getInstance().clear();
-			RenderableHolder.gameplay2.stop();
-			///////
-		}
-	}
 
 	public void setSpell() {
 		spell.add(KeyCode.F1);

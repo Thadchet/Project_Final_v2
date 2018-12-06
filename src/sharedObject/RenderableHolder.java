@@ -72,7 +72,7 @@ public class RenderableHolder {
 			if (w instanceof Wizard) {
 				for (IRenderable i : entities) {
 					if (i instanceof Word && !(i.getClass().getSimpleName().equals("WordHeal"))) {
-						if (((Word) i).getWordstring().equalsIgnoreCase(temp)) {
+						if (((Word) i).getWordstring().equalsIgnoreCase(temp) && ((Word) i).getY()>0) {
 							((Wizard) w).addScore();
 							((Word) i).setIsvisible(false);
 							Thread t = new Thread(new Runnable() {
@@ -137,6 +137,11 @@ public class RenderableHolder {
 		for (IRenderable w : entities) {
 			if (w instanceof Wizard) {
 				((Wizard) w).updatePosren();
+				for(IRenderable f : entities) {
+					if (f instanceof FireBall) {
+						((FireBall) f).updatePoswiz(((Wizard) w).getPosx(), ((Wizard) w).getPosy());;
+					}
+				}
 				for (IRenderable i : entities) {
 					if (i instanceof Word) {
 						((Word) i).updatePos(((Word) i).getSpeed());
