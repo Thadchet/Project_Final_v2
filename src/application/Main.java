@@ -1,7 +1,7 @@
 package application;
 
 	
-import Drawing.StartWindow;
+import Drawing.StartGame;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -11,7 +11,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		StartWindow startwindow = new StartWindow(stage);
+		StartGame startwindow = new StartGame(stage);
 		startwindow.startAnimation();
 		stage.show();
 

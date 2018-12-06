@@ -3,6 +3,8 @@ package sharedObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import Drawing.GameScreen;
+import Drawing.GameWindow;
 import Logic.FireBall;
 import Logic.Wizard;
 import Logic.Word;
@@ -15,16 +17,16 @@ public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 	private List<IRenderable> entities;
 	public static AudioClip fall;
-	public static AudioClip open ;
+	public static AudioClip open;
 	public static AudioClip menu;
 	public static AudioClip wordDead;
 	public static AudioClip gameover;
 	public static AudioClip soundgame;
-	public static AudioClip winner ;
+	public static AudioClip winner;
 	public static AudioClip heal;
 	public static AudioClip skill1;
 	public static AudioClip skill2;
-	public static AudioClip wrong ;
+	public static AudioClip wrong;
 	public static Image explosion;
 	public static Image spell;
 	public static String image_path = ClassLoader.getSystemResource("image/").toString();
@@ -39,7 +41,7 @@ public class RenderableHolder {
 
 	public static void loadResource() {
 
-		open = new AudioClip(sound_path+"open.mp3");
+		open = new AudioClip(sound_path + "open.mp3");
 		menu = new AudioClip(sound_path + "switch.mp3");
 		fall = new AudioClip(sound_path + "fall.mp3");
 		wordDead = new AudioClip(sound_path + "wordDead.mp3");
@@ -49,8 +51,8 @@ public class RenderableHolder {
 		skill1 = new AudioClip(sound_path + "skill1.m4a");
 		skill2 = new AudioClip(sound_path + "skill2.mp3");
 		spell = new Image(image_path + "spell.gif");
-		winner = new AudioClip(sound_path+"winner.mp3");
-		wrong = new AudioClip(sound_path+"wrong.mp3");
+		winner = new AudioClip(sound_path + "winner.mp3");
+		wrong = new AudioClip(sound_path + "wrong.mp3");
 	}
 
 	public void add(IRenderable entity) {
@@ -67,12 +69,12 @@ public class RenderableHolder {
 	}
 
 	public Word check(String temp) {
-		for (IRenderable w : entities) {
-			if (w instanceof Wizard) {
+		for (IRenderable g : entities) {
+			if (g instanceof GameScreen) {
 				for (IRenderable i : entities) {
 					if (i instanceof Word && !(i.getClass().getSimpleName().equals("WordHeal"))) {
-						if (((Word) i).getWordstring().equalsIgnoreCase(temp) && ((Word) i).getY()>0) {
-							((Wizard) w).addScore();
+						if (((Word) i).getWordstring().equalsIgnoreCase(temp) && ((Word) i).getY() > 0) {
+							((GameScreen) g).addScore();
 							((Word) i).setIsvisible(false);
 							Thread t = new Thread(new Runnable() {
 
@@ -95,7 +97,8 @@ public class RenderableHolder {
 					}
 					if (i instanceof WordHeal) {
 						if (((WordHeal) i).getWordstring().equalsIgnoreCase(temp)) {
-							((Wizard) w).addScore();
+							((GameScreen) g).increaseLife();
+							((GameScreen) g).addScore();
 							((Word) i).setIsvisible(false);
 							Thread t = new Thread(new Runnable() {
 								@Override
@@ -134,33 +137,34 @@ public class RenderableHolder {
 	}
 
 	public void updatePos() {
-		for (IRenderable w : entities) {
-			if (w instanceof Wizard) {
-				((Wizard) w).updatePosren();
-				for(IRenderable f : entities) {
-					if (f instanceof FireBall) {
-						((FireBall) f).updatePoswiz(((Wizard) w).getPosx(), ((Wizard) w).getPosy());;
-					}
-				}
+		for (IRenderable g : entities) {
+			if (g instanceof GameScreen)
 				for (IRenderable i : entities) {
+					if (i instanceof Wizard) {
+						((Wizard) i).updatePosren();
+						for (IRenderable f : entities) {
+							if (f instanceof FireBall) {
+								((FireBall) f).updatePoswiz(((Wizard) i).getPosx(), ((Wizard) i).getPosy());
+							}
+						}
+					}
 					if (i instanceof Word) {
 						((Word) i).updatePos(((Word) i).getSpeed());
 						if (((Word) i).getY() > 650) {
 							fall.play();
-							((Wizard) w).decreaseLife();
+							((GameScreen) g).decreaseLife();
 							((Word) i).setIsvisible(false);
 							((Word) i).setIsdestory(true);
 						}
 					}
 				}
-			}
 		}
 	}
 
 	public void reduceSpeed() {
 		for (IRenderable i : entities) {
-			if (i instanceof Word ) {
-				double lastspeed = ((Word)i).getSpeed();
+			if (i instanceof Word) {
+				double lastspeed = ((Word) i).getSpeed();
 				((Word) i).setSpeed(-0.2);
 				Thread t = new Thread(new Runnable() {
 
@@ -183,29 +187,23 @@ public class RenderableHolder {
 	}
 
 	public void destroyAllscreen() {
-		for (IRenderable w : entities) {
-			if (w instanceof Wizard) {
+		for (IRenderable g : entities) {
+			if (g instanceof GameScreen) {
 				for (IRenderable i : entities) {
-					if (i instanceof Word || i instanceof WordHeal) {
+					if (i instanceof Word && !(i.getClass().getSimpleName().equals("WordHeal"))) {
 						if (((Word) i).getY() > 0) {
+							((GameScreen) g).addScore();
 							((Word) i).setIsvisible(false);
 							((Word) i).setIsdestory(true);
-							((Wizard) w).addScore();
 							skill2.play();
 						}
 					}
-				}
-			}
-		}
-	}
-
-	public void updateWordHeal() {
-		for (IRenderable w : entities) {
-			if (w instanceof Wizard) {
-				for (IRenderable h : entities) {
-					if (h instanceof WordHeal) {
-						if (h.isDestroyed()&& ((WordHeal)h).getY()<650) {
-							((Wizard) w).increaseLife();
+					if(i instanceof WordHeal) {
+						if (((Word) i).getY() > 0) {
+							((GameScreen) g).addScore();
+							((GameScreen) g).increaseLife();
+							((WordHeal) i).setIsvisible(false);
+							((WordHeal) i).setIsdestory(true);
 						}
 					}
 				}
@@ -213,32 +211,34 @@ public class RenderableHolder {
 		}
 	}
 
+
 	public boolean isGamefinish() {
-		for (IRenderable w : entities) {
-			if (w instanceof Wizard) {
-				if (((Wizard) w).life == 0) {
+		for (IRenderable g : entities) {
+			if (g instanceof GameScreen) {
+				if (((GameScreen) g).getLife()==0) {
 					System.out.println("gameover");
 					return true;
 				}
-				if(isWinner()) {
+				if (isWinner()) {
 					System.out.println("winner");
-					return true ;
+					return true;
 				}
 			}
 		}
 		return false;
 	}
+
 	public boolean isWinner() {
-		for(IRenderable w : entities) {
-			if( w instanceof Word) {
+		for (IRenderable w : entities) {
+			if (w instanceof Word) {
 				return false;
 			}
 		}
-		return true ;
+		return true;
 	}
 
 	public void clear() {
 		entities.clear();
 	}
-	
+
 }

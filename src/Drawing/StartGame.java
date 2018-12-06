@@ -15,7 +15,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import sharedObject.RenderableHolder;
 
-public class StartWindow {
+public class StartGame {
 	public static GraphicsContext gc;
 	private AnimationTimer animation;
 	private AnimationTimer soundanimation;
@@ -28,7 +28,7 @@ public class StartWindow {
 	private int menuSelected = 1;
 	static StackPane pane;
 
-	public StartWindow(Stage primarystage) {
+	public StartGame(Stage primarystage) {
 		canvas = new Canvas(550, 750);
 		this.primarystage = primarystage;
 		primarystage.setResizable(false);

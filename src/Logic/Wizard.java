@@ -5,8 +5,6 @@ import javafx.scene.image.Image;
 
 public class Wizard extends Entity {
 	public String image_path = ClassLoader.getSystemResource("image/").toString();
-	public static int score = 0;
-	public static int life = 10;
 	public static double posx = 300 ;
 	public static double posy = 400 ;
 	private double speedx = 2; 
@@ -18,22 +16,7 @@ public class Wizard extends Entity {
 		this.setPosition(10,560);
 		
 	}
-	public void increaseLife() {
-		life += 2 ;
-	}
-
-	public void decreaseLife() {
-		int temp = life-1 ;
-		if(temp < 0) {
-			temp = 0 ;
-		}
-		life = temp ;
-	}
-
-	public void addScore() {
-		this.score += 1;
-	}
-
+	
 	@Override
 	public void setImage(String filename, int width, int height) {
 		Image i = new Image(filename, width, height, false, false);
@@ -109,7 +92,6 @@ public class Wizard extends Entity {
 	public void setPosy(double posy) {
 		this.posy = posy;
 	}
-	
 	
 
 }
