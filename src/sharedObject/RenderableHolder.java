@@ -23,7 +23,6 @@ public class RenderableHolder {
 	public static AudioClip heal;
 	public static AudioClip skill1;
 	public static AudioClip skill2;
-	public static Image balloon;
 	public static Image explosion;
 	public static Image spell;
 	public static String image_path = ClassLoader.getSystemResource("image/").toString();
@@ -43,11 +42,9 @@ public class RenderableHolder {
 		wordDead = new AudioClip(sound_path + "wordDead.mp3");
 		gameover = new AudioClip(sound_path + "gameover.mp3");
 		soundgame = new AudioClip(sound_path + "game2.m4a");
-		balloon = new Image(image_path + "balloon.gif");
 		heal = new AudioClip(sound_path + "heal.mp3");
 		skill1 = new AudioClip(sound_path + "skill1.m4a");
 		skill2 = new AudioClip(sound_path + "skill2.mp3");
-		explosion = new Image(image_path + "explosion.gif");
 		spell = new Image(image_path + "spell.gif");
 		winner = new AudioClip(sound_path+"winner.mp3");
 	}
