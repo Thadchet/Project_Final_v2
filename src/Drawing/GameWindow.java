@@ -158,7 +158,7 @@ public class GameWindow extends Canvas {
 	}
 
 	public void addWord() {
-
+		System.out.println(data.length);
 		for (int i = 0; i < data.length; i++) {
 			System.out.println(image_path + data[i] + ".png");
 			word = new Word(data[i], image_path + data[i] + ".png", 1);
@@ -168,9 +168,6 @@ public class GameWindow extends Canvas {
 			if (i > 56) {
 				word.setSpeed(word.getSpeed() - 2.5);
 				py -= 15000;
-			} else if (i > 42) {
-				word.setSpeed(word.getSpeed() - 2);
-				py -= 12500;
 			} else if (i > 42) {
 				word.setSpeed(word.getSpeed() - 1.5);
 				py -= 9500;
