@@ -9,6 +9,9 @@ public abstract class Entity implements IRenderable{
 	protected double x,y ;
 	protected double width,height ;
 	
+	protected Entity() {
+		
+	}
 	
 	public double getWidth() {
 		return width;
@@ -21,10 +24,6 @@ public abstract class Entity implements IRenderable{
 		this.y = y ;
 	
 	}
-	protected Entity() {
-		
-	}
-	
 
 	public abstract void setImage(Image i);
 

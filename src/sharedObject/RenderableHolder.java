@@ -15,6 +15,7 @@ public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 	private List<IRenderable> entities;
 	public static AudioClip fall;
+	public static AudioClip open ;
 	public static AudioClip menu;
 	public static AudioClip wordDead;
 	public static AudioClip gameover;
@@ -23,6 +24,7 @@ public class RenderableHolder {
 	public static AudioClip heal;
 	public static AudioClip skill1;
 	public static AudioClip skill2;
+	public static AudioClip wrong ;
 	public static Image explosion;
 	public static Image spell;
 	public static String image_path = ClassLoader.getSystemResource("image/").toString();
@@ -37,16 +39,18 @@ public class RenderableHolder {
 
 	public static void loadResource() {
 
+		open = new AudioClip(sound_path+"open.mp3");
 		menu = new AudioClip(sound_path + "switch.mp3");
 		fall = new AudioClip(sound_path + "fall.mp3");
 		wordDead = new AudioClip(sound_path + "wordDead.mp3");
 		gameover = new AudioClip(sound_path + "gameover.mp3");
-		soundgame = new AudioClip(sound_path + "game2.m4a");
+		soundgame = new AudioClip(sound_path + "gameplay.m4a");
 		heal = new AudioClip(sound_path + "heal.mp3");
 		skill1 = new AudioClip(sound_path + "skill1.m4a");
 		skill2 = new AudioClip(sound_path + "skill2.mp3");
 		spell = new Image(image_path + "spell.gif");
 		winner = new AudioClip(sound_path+"winner.mp3");
+		wrong = new AudioClip(sound_path+"wrong.mp3");
 	}
 
 	public void add(IRenderable entity) {
@@ -112,6 +116,7 @@ public class RenderableHolder {
 						}
 					}
 				}
+				wrong.play();
 			}
 		}
 		return null;
@@ -173,7 +178,6 @@ public class RenderableHolder {
 				});
 				t.start();
 				skill1.play();
-				
 			}
 		}
 	}
@@ -236,10 +240,5 @@ public class RenderableHolder {
 	public void clear() {
 		entities.clear();
 	}
-	public void test() {
-		for(IRenderable i : entities) {
-			if(i instanceof Word)
-				System.out.println(((Word) i).getWordstring() + " " +((Word) i).getX());
-		}
-	}
+	
 }

@@ -15,7 +15,6 @@ public class FireBall extends Entity implements IRenderable {
 	private boolean isVisible = true;
 	private boolean isDestory = false;
 	protected double i = 0 ;
-	private Image fire ;
 	private double cos ;
 	private double sin ;
 
@@ -25,7 +24,6 @@ public class FireBall extends Entity implements IRenderable {
 		this.dY = y-bY ;
 		this.bX = bX ;
 		this.bY = bY ;
-		
 		this.dXY = Math.sqrt(Math.pow(dX, 2) + Math.pow(dY, 2));
 		this.sin = dY/dXY ;
 		this.cos = dX/dXY ;

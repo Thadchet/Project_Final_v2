@@ -10,7 +10,6 @@ public class Word extends Entity {
 	private boolean isVisible = true;
 	private boolean isDestory = false;
 	private double speed ;
-	private Thread t;
 
 	public double getSpeed() {
 		return speed;

@@ -1,8 +1,6 @@
 package Drawing;
 
 import java.util.ArrayList;
-import java.util.Random;
-
 import Logic.FireBall;
 import Logic.Wizard;
 import Logic.Word;
@@ -14,12 +12,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
 public class GameWindow extends Canvas {
 	private static AnimationTimer gamewindowanimation;
-	private Random randomGenerator;
 	private ArrayList<Word> wordList = new ArrayList<>();
 	private String[] data = { "cat", "dog", "win", "create", "java", "progmeth", "chromatic", "integral", "unique",
 			"vertex", "ceiling", "adjacency", "bipartite", "degree", "edges", "euler", "hamilton", "proof", "iterator",
@@ -86,7 +82,6 @@ public class GameWindow extends Canvas {
 
 	public void addEvent(GraphicsContext gc) {
 		this.setOnKeyPressed((KeyEvent) -> {
-			RenderableHolder.getInstance().test();
 			if (!isGameover) {
 				if (spell.contains(KeyEvent.getCode())) {
 					if (KeyEvent.getCode().equals(KeyCode.F1)) {
@@ -124,15 +119,11 @@ public class GameWindow extends Canvas {
 							}
 						}
 					} else {
-						// System.out.println(temp);
 						word = RenderableHolder.getInstance().check(temp);
-						// System.out.println(String.valueOf(word.getX())+" "
-						// +String.valueOf(word.getY()));
 						if (word != null) {
 							fireball = new FireBall(word.getX(), word.getY(), wizard.getX(), wizard.getY());
 							RenderableHolder.getInstance().add(fireball);
 						}
-
 						temp = "";
 					}
 				}

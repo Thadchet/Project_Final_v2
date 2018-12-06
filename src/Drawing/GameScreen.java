@@ -3,7 +3,7 @@ package Drawing;
 import Logic.Wizard;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import sharedObject.IRenderable;
 
@@ -21,7 +21,7 @@ public class GameScreen implements IRenderable{
 		setImage();
 	}
 	public void setImage() {
-		bg = new Image(image_path+"bg.gif");
+		bg = new Image(image_path+"background.gif");
 		life = new Image(image_path+"life.gif");
 		laser = new Image(image_path+"laser.gif");
 		skill2 = new Image(image_path+"skill1.jpg");
@@ -37,6 +37,7 @@ public class GameScreen implements IRenderable{
 		gc.fillText("Score : "+ String.valueOf(Wizard.score), 50, 50);
 		Font typing = new Font("Agency FB",35);
 		gc.setFont(typing);
+		gc.setFill(Color.YELLOW);
 		gc.fillText("TPYING : " +GameWindow.temp,50,740);
 		gc.drawImage(life,430,20,40,40);
 		gc.drawImage(skill1, 480, 120, 40, 40);
@@ -49,7 +50,7 @@ public class GameScreen implements IRenderable{
 		}
 		
 		gc.fillText(" x "+ String.valueOf(Wizard.life), 470,50);
-		gc.drawImage(laser,20, 650,570,100);
+		gc.drawImage(laser,0,630,710,120);
 	}
 
 	@Override
