@@ -40,7 +40,7 @@ public class GameWindow extends Canvas {
 	public String image_path = ClassLoader.getSystemResource("ImWord/").toString();
 	public String image_path_special = ClassLoader.getSystemResource("ImWordspecial/").toString();
 	public static int score;
-	private boolean isGameover = false;
+	private boolean isGameover ;
 	public static boolean skillused1 = false;
 	public static boolean skillused2 = false;
 	public static int high_score = 0;
@@ -62,6 +62,7 @@ public class GameWindow extends Canvas {
 
 	public void drawGameWindow() {
 		addEvent(gc);
+		RenderableHolder.soundgame.play();
 		gamewindowanimation = new AnimationTimer() {
 
 			@Override
@@ -70,15 +71,15 @@ public class GameWindow extends Canvas {
 				updateWord();
 				updateDetail();
 				isGamefinish();
-				Playmusic2();
+				playmusic();
 			}
 		};
 		gamewindowanimation.start();
 	}
 
-	public void Playmusic2() {
-		if ((!RenderableHolder.gameplay2.isPlaying()) && (!isGameover)) {
-			RenderableHolder.gameplay2.play();
+	public void playmusic() {
+		if (!RenderableHolder.soundgame.isPlaying() && RenderableHolder.getInstance().isGamefinish()) {
+			RenderableHolder.soundgame.play();
 		}
 	}
 
@@ -234,8 +235,8 @@ public class GameWindow extends Canvas {
 	public void isGamefinish() {
 		if (RenderableHolder.getInstance().isGamefinish()) {
 			gamewindowanimation.stop();
-			RenderableHolder.gameplay2.stop();
-			RenderableHolder.gameplay.stop();
+			RenderableHolder.soundgame.stop();
+			System.out.println("is Here");
 			if (!RenderableHolder.getInstance().isWinner()) {
 				RenderableHolder.gameover.play();
 				isGameover = true;
