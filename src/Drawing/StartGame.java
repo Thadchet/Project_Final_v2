@@ -50,6 +50,7 @@ public class StartGame {
 		Font thefont = Font.font("Agency FB", FontWeight.BOLD, 75);
 		gc.setFont(thefont);
 		gc.strokeText("Word Fantacy", 115, 95);
+	
 	}
 
 	public void drawFrame(GraphicsContext gc) {
