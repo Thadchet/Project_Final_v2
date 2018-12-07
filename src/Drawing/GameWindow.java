@@ -274,7 +274,11 @@ public class GameWindow extends Canvas {
 				isGameover = false;
 				GameFinish.startgamefinish(gc, isGameover, gamescreen);
 				setHighscore();
+				GameFinish.startgamefinish(gc,isGameover,gamescreen);
 			}
+			
+			setHighscore();
+			temp = "" ;
 			RenderableHolder.getInstance().clear();
 		}
 	}
