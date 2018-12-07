@@ -129,6 +129,8 @@ public class GameWindow extends Canvas {
 									|| KeyEvent.getCode().equals(KeyCode.F12)
 									|| KeyEvent.getCode().equals(KeyCode.PAUSE)
 									|| KeyEvent.getCode().equals(KeyCode.INSERT)
+									|| KeyEvent.getCode().equals(KeyCode.HOME)
+									|| KeyEvent.getCode().equals(KeyCode.END)
 									|| KeyEvent.getCode().equals(KeyCode.UNDEFINED))) {
 								temp += KeyEvent.getCode().toString();
 							}
@@ -155,7 +157,7 @@ public class GameWindow extends Canvas {
 
 	public void addGamescreen() {
 		gamescreen = new GameScreen();
-		gamescreen.setStatus(1, 0);
+		gamescreen.setStatus(10, 0);  ////// set life and score 
 		RenderableHolder.getInstance().add(gamescreen);
 	}
 

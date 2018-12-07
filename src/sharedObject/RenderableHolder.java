@@ -27,6 +27,7 @@ public class RenderableHolder {
 	public static AudioClip skill1;
 	public static AudioClip skill2;
 	public static AudioClip wrong;
+	public static AudioClip typing ;
 	public static Image explosion;
 	public static Image spell;
 	public static String image_path = ClassLoader.getSystemResource("image/").toString();
@@ -46,13 +47,14 @@ public class RenderableHolder {
 		fall = new AudioClip(sound_path + "fall.mp3");
 		wordDead = new AudioClip(sound_path + "wordDead.mp3");
 		gameover = new AudioClip(sound_path + "gameover.mp3");
-		soundgame = new AudioClip(sound_path + "gameplay.m4a");
+		soundgame = new AudioClip(sound_path + "gameplay.mp3");
 		heal = new AudioClip(sound_path + "heal.mp3");
 		skill1 = new AudioClip(sound_path + "skill1.m4a");
 		skill2 = new AudioClip(sound_path + "skill2.mp3");
 		spell = new Image(image_path + "spell.gif");
 		winner = new AudioClip(sound_path + "winner.mp3");
 		wrong = new AudioClip(sound_path + "wrong.mp3");
+		typing = new AudioClip(sound_path+"typing.mp3");
 	}
 
 	public void add(IRenderable entity) {
