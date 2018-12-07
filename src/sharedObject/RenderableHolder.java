@@ -6,12 +6,14 @@ import java.util.List;
 import Drawing.GameScreen;
 import Drawing.GameWindow;
 import Logic.FireBall;
+import Logic.SnowSkill1;
 import Logic.Wizard;
 import Logic.Word;
 import Logic.WordHeal;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
+import javafx.util.Pair;
 
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
@@ -30,6 +32,8 @@ public class RenderableHolder {
 	public static AudioClip typing ;
 	public static Image explosion;
 	public static Image spell;
+	public static Image snowskill1;
+	public static Image ballskill2 ;
 	public static String image_path = ClassLoader.getSystemResource("image/").toString();
 	public static String sound_path = ClassLoader.getSystemResource("sound/").toString();
 	static {
@@ -52,6 +56,8 @@ public class RenderableHolder {
 		skill1 = new AudioClip(sound_path + "skill1.m4a");
 		skill2 = new AudioClip(sound_path + "skill2.mp3");
 		spell = new Image(image_path + "spell.gif");
+		ballskill2 = new Image(image_path + "ballsk2.gif");
+		snowskill1 = new Image(image_path + "snow.gif");
 		winner = new AudioClip(sound_path + "winner.mp3");
 		wrong = new AudioClip(sound_path + "wrong.mp3");
 		typing = new AudioClip(sound_path+"typing.mp3");
@@ -159,6 +165,9 @@ public class RenderableHolder {
 							((Word) i).setIsdestory(true);
 						}
 					}
+					if(i instanceof SnowSkill1) {
+						((SnowSkill1) i).updatePos();
+					}
 				}
 		}
 	}
@@ -188,12 +197,13 @@ public class RenderableHolder {
 		}
 	}
 
-	public void destroyAllscreen() {
+	public void destroyAllscreen(ArrayList<Word> wordInScreen) {
 		for (IRenderable g : entities) {
 			if (g instanceof GameScreen) {
 				for (IRenderable i : entities) {
 					if (i instanceof Word && !(i.getClass().getSimpleName().equals("WordHeal"))) {
 						if (((Word) i).getY() > 0) {
+							wordInScreen.add((Word) i);
 							((GameScreen) g).addScore();
 							((Word) i).setIsvisible(false);
 							((Word) i).setIsdestory(true);
@@ -202,6 +212,7 @@ public class RenderableHolder {
 					}
 					if(i instanceof WordHeal) {
 						if (((Word) i).getY() > 0) {
+							wordInScreen.add((Word) i);
 							((GameScreen) g).addScore();
 							((GameScreen) g).increaseLife();
 							((WordHeal) i).setIsvisible(false);
@@ -237,6 +248,13 @@ public class RenderableHolder {
 			}
 		}
 		return true;
+	}
+	public void deleteSnow() {
+		for(IRenderable s : entities) {
+			if(s instanceof SnowSkill1) {
+				((SnowSkill1) s).setDestroy();
+			}
+		}
 	}
 
 	public void clear() {
