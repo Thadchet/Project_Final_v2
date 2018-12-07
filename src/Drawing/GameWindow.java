@@ -255,6 +255,7 @@ public class GameWindow extends Canvas {
 			setHighscore();
 			temp = "" ;
 			RenderableHolder.getInstance().clear();
+			
 		}
 	}
 
