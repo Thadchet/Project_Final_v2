@@ -12,7 +12,7 @@ public class GameScreen implements IRenderable {
 	private int life;
 	private int score;
 	private Image background;
-	private Image Imlife;
+	private Image imlife;
 	private Image laser;
 	private Image skill1;
 	private Image skill2;
@@ -26,7 +26,7 @@ public class GameScreen implements IRenderable {
 
 	public void setImage() {
 		background = new Image(image_path + "background.gif");
-		Imlife = new Image(image_path + "life.gif");
+		imlife = new Image(image_path + "life.gif");
 		laser = new Image(image_path + "laser.gif");
 		skill2 = new Image(image_path + "skill1.jpg");
 		skill1 = new Image(image_path + "skill2.jpg");
@@ -43,18 +43,23 @@ public class GameScreen implements IRenderable {
 		gc.setFont(typing);
 		gc.setFill(Color.YELLOW);
 		gc.fillText("TPYING : " + GameWindow.temp, 50, 740);
-		gc.drawImage(Imlife, 430, 20, 40, 40);
-		gc.drawImage(skill1, 480, 120, 40, 40);
-		gc.drawImage(skill2, 480, 70, 40, 40);
+		gc.drawImage(imlife, 430, 20, 40, 40);
+		gc.drawImage(skill1, 370, 20, 40, 40);
+		gc.drawImage(skill2, 325, 20, 40, 40);
 		if (isSkillused1) {
-			gc.drawImage(skillused, 480, 70, 40, 40);
+			gc.drawImage(skillused, 325, 20, 40, 40);
 		}
 		if (isSkillused2) {
-			gc.drawImage(skillused, 480, 120, 40, 40);
+			gc.drawImage(skillused, 370, 20, 40, 40);
 		}
 
 		gc.fillText(" x " + life, 470, 50);
 		gc.drawImage(laser, 0, 630, 710, 120);
+		
+		Font fontskill = new Font("Agency FB", 15);
+		gc.setFont(fontskill);
+		gc.fillText("F2" , 385, 17);
+		gc.fillText("F1" , 340, 17);
 	}
 
 	@Override
@@ -115,7 +120,7 @@ public class GameScreen implements IRenderable {
 	}
 
 	public Image getImlife() {
-		return Imlife;
+		return imlife;
 	}
 
 	public Image getLaser() {

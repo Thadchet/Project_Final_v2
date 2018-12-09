@@ -3,7 +3,7 @@
   realizations="true" associations="false" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="Logic.FireSkill2" project="Project_Final_v2" 
     file="/Project_Final_v2/src/Logic/FireSkill2.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1517" y="1089"/>    
+    <position height="-1" width="-1" x="1327" y="989"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <interface id="2" language="java" name="sharedObject.IRenderable" project="Project_Final_v2" 
     file="/Project_Final_v2/src/sharedObject/IRenderable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1347" y="732"/>    
+    <position height="-1" width="-1" x="1266" y="456"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </interface>  
   <class id="3" language="java" name="exception.WrongInputException" project="Project_Final_v2" 
     file="/Project_Final_v2/src/exception/WrongInputException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1302" y="428"/>    
+    <position height="-1" width="-1" x="748" y="466"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="exception.UsedskillException" project="Project_Final_v2" 
     file="/Project_Final_v2/src/exception/UsedskillException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1560" y="432"/>    
+    <position height="-1" width="-1" x="967" y="462"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="Logic.Wizard" project="Project_Final_v2" 
     file="/Project_Final_v2/src/Logic/Wizard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2302" y="1098"/>    
+    <position height="-1" width="-1" x="1995" y="454"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="Logic.WordHeal" project="Project_Final_v2" 
     file="/Project_Final_v2/src/Logic/WordHeal.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2092" y="1454"/>    
+    <position height="-1" width="-1" x="2089" y="1162"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="sharedObject.RenderableHolder" project="Project_Final_v2" 
     file="/Project_Final_v2/src/sharedObject/RenderableHolder.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="184" y="1053"/>    
+    <position height="-1" width="-1" x="208" y="1053"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="Logic.Entity" project="Project_Final_v2" 
     file="/Project_Final_v2/src/Logic/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2088" y="312"/>    
+    <position height="-1" width="-1" x="1566" y="478"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="Logic.SnowSkill1" project="Project_Final_v2" 
     file="/Project_Final_v2/src/Logic/SnowSkill1.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1015" y="1089"/>    
+    <position height="-1" width="-1" x="1045" y="802"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="Drawing.GameFinish" project="Project_Final_v2" 
     file="/Project_Final_v2/src/Drawing/GameFinish.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="326" y="508"/>    
+    <position height="-1" width="-1" x="264" y="511"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="application.Main" project="Project_Final_v2" 
     file="/Project_Final_v2/src/application/Main.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="852" y="358"/>    
+    <position height="-1" width="-1" x="550" y="457"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="Logic.Background" project="Project_Final_v2" 
     file="/Project_Final_v2/src/Logic/Background.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2542" y="1010"/>    
+    <position height="-1" width="-1" x="1839" y="904"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="Drawing.GameScreen" project="Project_Final_v2" 
     file="/Project_Final_v2/src/Drawing/GameScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1254" y="1242"/>    
+    <position height="-1" width="-1" x="1075" y="1365"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="Drawing.StartGame" project="Project_Final_v2" 
     file="/Project_Final_v2/src/Drawing/StartGame.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="754" y="1010"/>    
+    <position height="-1" width="-1" x="795" y="889"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="Logic.FireBall" project="Project_Final_v2" 
     file="/Project_Final_v2/src/Logic/FireBall.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1804" y="1116"/>    
+    <position height="-1" width="-1" x="1588" y="1018"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,57 +147,56 @@
   </class>  
   <class id="17" language="java" name="Logic.Word" project="Project_Final_v2" 
     file="/Project_Final_v2/src/Logic/Word.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2078" y="1107"/>    
+    <position height="-1" width="-1" x="2073" y="875"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="18">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="17"/>  
-  </generalization>  
-  <generalization id="19">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <realization id="20">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <realization id="21">    
+  <realization id="18">    
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <generalization id="22">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <realization id="23">    
-    <end type="SOURCE" refId="16"/>    
+  <realization id="19">    
+    <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <realization id="24">    
-    <bendpoint x="2538" y="748"/>    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <generalization id="25">    
+  <generalization id="20">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="8"/>  
   </generalization>  
-  <realization id="26">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <generalization id="27">    
+  <generalization id="21">    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="8"/>  
   </generalization>  
-  <generalization id="28">    
+  <generalization id="22">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <realization id="23">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <generalization id="24">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <realization id="26">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="27">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="17"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

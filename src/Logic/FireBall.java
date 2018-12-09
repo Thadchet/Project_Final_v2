@@ -7,14 +7,14 @@ import sharedObject.RenderableHolder;
 
 public class FireBall extends Entity implements IRenderable {
 
-	protected double bX;
-	protected double bY;
-	protected double dXY;
-	protected double dX;
-	protected double dY;
+	private double bX;
+	private double bY;
+	private double dXY;
+	private double dX;
+	private double dY;
 	private boolean isVisible = true;
 	private boolean isDestroy = false;
-	protected double i = 0;
+	private double i = 0;
 	private double cos;
 	private double sin;
 

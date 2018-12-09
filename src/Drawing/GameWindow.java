@@ -44,7 +44,6 @@ public class GameWindow extends Canvas {
 	private Scene scene;
 	public String image_path = ClassLoader.getSystemResource("ImWord/").toString();
 	public String image_path_special = ClassLoader.getSystemResource("ImWordspecial/").toString();
-	public static int score;
 	private boolean isGameover;
 	public static int high_score = 0;
 
@@ -160,6 +159,7 @@ public class GameWindow extends Canvas {
 					StartGame startwindow = new StartGame(stage);
 					startwindow.startAnimation();
 					isGameover = false;
+					RenderableHolder.backmenu.play();
 				}
 			}
 		});

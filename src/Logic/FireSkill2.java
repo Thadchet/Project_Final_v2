@@ -7,12 +7,12 @@ import sharedObject.RenderableHolder;
 
 public class FireSkill2 extends Entity implements IRenderable {
 
-	protected double bX;
-	protected double bY;
-	protected double dXY;
-	protected double dX;
-	protected double dY;
-	protected double i = 0;
+	private double bX;
+	private double bY;
+	private double dXY;
+	private double dX;
+	private double dY;
+	private double i = 0;
 	private double cos;
 	private double sin;
 	private boolean isDestroyed;

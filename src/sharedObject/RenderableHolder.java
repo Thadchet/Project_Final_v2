@@ -19,6 +19,7 @@ public class RenderableHolder {
 	public static AudioClip fall;
 	public static AudioClip open;
 	public static AudioClip menu;
+	public static AudioClip backmenu;
 	public static AudioClip wordDead;
 	public static AudioClip gameover;
 	public static AudioClip soundgame;
@@ -28,7 +29,6 @@ public class RenderableHolder {
 	public static AudioClip skill2;
 	public static AudioClip wrong;
 	public static AudioClip typing;
-	public static Image explosion;
 	public static Image spell;
 	public static Image snowskill1;
 	public static Image ballskill2;
@@ -46,6 +46,7 @@ public class RenderableHolder {
 
 		open = new AudioClip(sound_path + "open.mp3");
 		menu = new AudioClip(sound_path + "switch.mp3");
+		backmenu = new AudioClip(sound_path+"backmenu.mp3");
 		fall = new AudioClip(sound_path + "fall.mp3");
 		wordDead = new AudioClip(sound_path + "wordDead.mp3");
 		gameover = new AudioClip(sound_path + "gameover.mp3");
@@ -194,6 +195,19 @@ public class RenderableHolder {
 				for (IRenderable i : entities) {
 					if (i instanceof Word && !(i.getClass().getSimpleName().equals("WordHeal"))) {
 						if (((Word) i).getY() > 0) {
+							Thread t = new Thread(new Runnable() {
+								@Override
+								public void run() {
+									try {
+										Thread.sleep(550);
+									} catch (InterruptedException e) {
+										e.printStackTrace();
+									}
+									((Word) i).setIsdestroy(true);
+									heal.play();
+								}
+							});
+							t.start();
 							wordInScreen.add((Word) i);
 							((GameScreen) g).addScore();
 							((Word) i).setIsvisible(false);
@@ -203,6 +217,19 @@ public class RenderableHolder {
 					}
 					if (i instanceof WordHeal) {
 						if (((Word) i).getY() > 0) {
+							Thread t = new Thread(new Runnable() {
+								@Override
+								public void run() {
+									try {
+										Thread.sleep(550);
+									} catch (InterruptedException e) {
+										e.printStackTrace();
+									}
+									((Word) i).setIsdestroy(true);
+									heal.play();
+								}
+							});
+							t.start();
 							wordInScreen.add((Word) i);
 							((GameScreen) g).addScore();
 							((GameScreen) g).increaseLife();

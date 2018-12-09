@@ -108,8 +108,8 @@ public class GameFinish {
 			public void run() {
 				gc.setFont(font);
 				gc.setFill(Color.BLACK);
-				gc.fillText(String.valueOf(gamescreen.getScore()), 260, 250);
-				gc.fillText(String.valueOf(GameWindow.high_score), 260, 450);
+				gc.fillText(String.valueOf(gamescreen.getScore()), 250, 250);
+				gc.fillText(String.valueOf(GameWindow.high_score), 250, 450);
 			}
 		});
 
