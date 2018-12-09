@@ -1,7 +1,5 @@
 package Drawing;
 
-import Logic.Background;
-import Logic.Wizard;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -11,6 +9,7 @@ import sharedObject.RenderableHolder;
 public class GameFinish {
 	private static String[] textYS = { "Y", "O", "U", "R", " ", "S", "C", "O", "R", "E" };
 	private static String[] textHS = { "H", "I", "G", "H", " ", "S", "C", "O", "R", "E" };
+
 	public GameFinish() {
 	}
 
@@ -20,12 +19,10 @@ public class GameFinish {
 			@Override
 			public void run() {
 				int i = 1;
-				// TODO Auto-generated method stub
 				setTextGameover(gc, gamescreen);
 				try {
 					Thread.sleep(3000);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				System.out.println(i);
@@ -41,12 +38,10 @@ public class GameFinish {
 			@Override
 			public void run() {
 				int i = 1;
-				// TODO Auto-generated method stub
 				setTextGameWinner(gc, gamescreen);
 				try {
 					Thread.sleep(3000);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				System.out.println(i);
@@ -88,50 +83,45 @@ public class GameFinish {
 
 			@Override
 			public void run() {
-				String tempYS = "" ;
-				String tempHS = "" ;
-				//System.out.println(text.length);
+				String tempYS = "";
+				String tempHS = "";
 				for (int i = 0; i < textYS.length; i++) {
-					// TODO Auto-generated method stub
 					gc.setFont(font);
-					tempYS = tempYS + textYS[i] ;
-					tempHS = tempHS + textHS[i] ;
+					tempYS = tempYS + textYS[i];
+					tempHS = tempHS + textHS[i];
 					gc.fillText(tempYS, 120, 150);
 					gc.fillText(tempHS, 120, 350);
-					if(!RenderableHolder.typing.isPlaying()) RenderableHolder.typing.play();
+					if (!RenderableHolder.typing.isPlaying())
+						RenderableHolder.typing.play();
 					try {
 						Thread.sleep(300);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
 			}
 		});
-		
+
 		Thread t3 = new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				gc.setFont(font);
 				gc.setFill(Color.BLACK);
 				gc.fillText(String.valueOf(gamescreen.getScore()), 260, 250);
 				gc.fillText(String.valueOf(GameWindow.high_score), 260, 450);
 			}
 		});
-		
+
 		Thread thread = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				int time = 0;
 				while (time < 100) {
-					// TODO Auto-generated method stub
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					Font font = new Font("Agency FB", 40);
@@ -141,7 +131,6 @@ public class GameFinish {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					gc.setFill(Color.GRAY);
@@ -154,14 +143,12 @@ public class GameFinish {
 		try {
 			t.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		t3.start();
 		try {
 			t3.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		thread.start();

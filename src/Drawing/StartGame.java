@@ -35,7 +35,7 @@ public class StartGame {
 		gc = canvas.getGraphicsContext2D();
 		RenderableHolder.open.play();
 		wizard = new Wizard();
-		background = new Background(RenderableHolder.image_path+"background.gif",0, 0);
+		background = new Background(RenderableHolder.image_path + "background.gif", 0, 0);
 
 	}
 
@@ -50,7 +50,7 @@ public class StartGame {
 		Font thefont = Font.font("Agency FB", FontWeight.BOLD, 75);
 		gc.setFont(thefont);
 		gc.strokeText("Word Fantacy", 115, 95);
-	
+
 	}
 
 	public void drawFrame(GraphicsContext gc) {
@@ -89,7 +89,6 @@ public class StartGame {
 
 			@Override
 			public void handle(long now) {
-				// TODO Auto-generated method stub
 				setBackground();
 				setText(gc);
 				drawFrame(gc); // to call update();
@@ -101,7 +100,6 @@ public class StartGame {
 
 			@Override
 			public void handle(long now) {
-				// TODO Auto-generated method stub
 				if (RenderableHolder.open.isPlaying() == false)
 					RenderableHolder.open.play();
 			}
@@ -109,7 +107,6 @@ public class StartGame {
 		soundanimation.start();
 
 	}
-
 
 	public void startAnimation() {
 		draw(gc);

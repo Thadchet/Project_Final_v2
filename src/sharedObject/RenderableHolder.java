@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Drawing.GameScreen;
-import Drawing.GameWindow;
 import Logic.FireBall;
 import Logic.SnowSkill1;
 import Logic.Wizard;
@@ -13,7 +12,6 @@ import Logic.WordHeal;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
-import javafx.util.Pair;
 
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
@@ -29,11 +27,11 @@ public class RenderableHolder {
 	public static AudioClip skill1;
 	public static AudioClip skill2;
 	public static AudioClip wrong;
-	public static AudioClip typing ;
+	public static AudioClip typing;
 	public static Image explosion;
 	public static Image spell;
 	public static Image snowskill1;
-	public static Image ballskill2 ;
+	public static Image ballskill2;
 	public static String image_path = ClassLoader.getSystemResource("image/").toString();
 	public static String sound_path = ClassLoader.getSystemResource("sound/").toString();
 	static {
@@ -60,11 +58,10 @@ public class RenderableHolder {
 		snowskill1 = new Image(image_path + "snow.gif");
 		winner = new AudioClip(sound_path + "winner.mp3");
 		wrong = new AudioClip(sound_path + "wrong.mp3");
-		typing = new AudioClip(sound_path+"typing.mp3");
+		typing = new AudioClip(sound_path + "typing.mp3");
 	}
 
 	public void add(IRenderable entity) {
-		// System.out.println("add");
 		entities.add(entity);
 	}
 
@@ -88,14 +85,12 @@ public class RenderableHolder {
 
 								@Override
 								public void run() {
-									// TODO Auto-generated method stub
 									try {
 										Thread.sleep(250);
 									} catch (InterruptedException e) {
-										// TODO Auto-generated catch block
 										e.printStackTrace();
 									}
-									((Word) i).setIsdestory(true);
+									((Word) i).setIsdestroy(true);
 								}
 							});
 							t.start();
@@ -111,14 +106,12 @@ public class RenderableHolder {
 							Thread t = new Thread(new Runnable() {
 								@Override
 								public void run() {
-									// TODO Auto-generated method stub
 									try {
 										Thread.sleep(250);
 									} catch (InterruptedException e) {
-										// TODO Auto-generated catch block
 										e.printStackTrace();
 									}
-									((Word) i).setIsdestory(true);
+									((Word) i).setIsdestroy(true);
 									heal.play();
 								}
 							});
@@ -162,10 +155,10 @@ public class RenderableHolder {
 							fall.play();
 							((GameScreen) g).decreaseLife();
 							((Word) i).setIsvisible(false);
-							((Word) i).setIsdestory(true);
+							((Word) i).setIsdestroy(true);
 						}
 					}
-					if(i instanceof SnowSkill1) {
+					if (i instanceof SnowSkill1) {
 						((SnowSkill1) i).updatePos();
 					}
 				}
@@ -181,11 +174,9 @@ public class RenderableHolder {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						try {
 							Thread.sleep(5000);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						((Word) i).setSpeed(lastspeed);
@@ -206,17 +197,17 @@ public class RenderableHolder {
 							wordInScreen.add((Word) i);
 							((GameScreen) g).addScore();
 							((Word) i).setIsvisible(false);
-							((Word) i).setIsdestory(true);
+							((Word) i).setIsdestroy(true);
 							skill2.play();
 						}
 					}
-					if(i instanceof WordHeal) {
+					if (i instanceof WordHeal) {
 						if (((Word) i).getY() > 0) {
 							wordInScreen.add((Word) i);
 							((GameScreen) g).addScore();
 							((GameScreen) g).increaseLife();
 							((WordHeal) i).setIsvisible(false);
-							((WordHeal) i).setIsdestory(true);
+							((WordHeal) i).setIsdestroy(true);
 						}
 					}
 				}
@@ -224,11 +215,10 @@ public class RenderableHolder {
 		}
 	}
 
-
 	public boolean isGamefinish() {
 		for (IRenderable g : entities) {
 			if (g instanceof GameScreen) {
-				if (((GameScreen) g).getLife()==0) {
+				if (((GameScreen) g).getLife() == 0) {
 					System.out.println("gameover");
 					return true;
 				}
@@ -249,9 +239,10 @@ public class RenderableHolder {
 		}
 		return true;
 	}
+
 	public void deleteSnow() {
-		for(IRenderable s : entities) {
-			if(s instanceof SnowSkill1) {
+		for (IRenderable s : entities) {
+			if (s instanceof SnowSkill1) {
 				((SnowSkill1) s).setDestroy();
 			}
 		}

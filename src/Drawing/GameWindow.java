@@ -7,14 +7,16 @@ import Logic.SnowSkill1;
 import Logic.Wizard;
 import Logic.Word;
 import Logic.WordHeal;
+import exception.UsedskillException;
+import exception.WrongInputException;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 import sharedObject.RenderableHolder;
 
 public class GameWindow extends Canvas {
@@ -48,7 +50,6 @@ public class GameWindow extends Canvas {
 
 	public GameWindow(Stage stage) {
 		this.stage = stage;
-		this.temp = "" ;
 		setWidth(550);
 		setHeight(750);
 		gc = getGraphicsContext2D();
@@ -69,7 +70,6 @@ public class GameWindow extends Canvas {
 
 			@Override
 			public void handle(long now) {
-				// TODO Auto-generated method stub
 				updateWord();
 				updateDetail();
 				isGamefinish();
@@ -90,37 +90,44 @@ public class GameWindow extends Canvas {
 			if (!isGameover) {
 				if (spell.contains(KeyEvent.getCode())) {
 					if (KeyEvent.getCode().equals(KeyCode.F1)) {
-						if (!gamescreen.isSkillused1()) {
-							RenderableHolder.getInstance().reduceSpeed();
-							for (int i = 0; i != 70; i++) {
-								snowskill1 = new SnowSkill1();
-								RenderableHolder.getInstance().add(snowskill1);
-							}
-							Thread thread = new Thread(new Runnable() {
-								public void run() {
-									try {
-										Thread.sleep(5000);
-									} catch (InterruptedException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
-									}
-									RenderableHolder.getInstance().deleteSnow();
+						try {
+							if (!gamescreen.isSkillused1()) {
+								RenderableHolder.getInstance().reduceSpeed();
+								for (int i = 0; i != 70; i++) {
+									snowskill1 = new SnowSkill1();
+									RenderableHolder.getInstance().add(snowskill1);
 								}
-							});
-							thread.start();
-							gamescreen.setisSkillused1(true);
+								Thread thread = new Thread(new Runnable() {
+									public void run() {
+										try {
+											Thread.sleep(5000);
+										} catch (InterruptedException e) {
+											e.printStackTrace();
+										}
+										RenderableHolder.getInstance().deleteSnow();
+									}
+								});
+								thread.start();
+								gamescreen.setisSkillused1(true);
+							}
+						} catch (UsedskillException e) {
+							System.out.println(e.getErrorMessage());
 						}
 					}
 					if (KeyEvent.getCode().equals(KeyCode.F2)) {
-						if (!gamescreen.isSkillused2()) {
-							RenderableHolder.getInstance().destroyAllscreen(wordInScreen);
-							for (int i = 0; i < wordInScreen.size(); i++) {
-								fireSkill2 = new FireSkill2(wordInScreen.get(i).getX(), wordInScreen.get(i).getY(),
-										wizard.getX(), wizard.getY());
-								RenderableHolder.getInstance().add(fireSkill2);
-								System.out.println("add FireSkill2");
+						try {
+							if (!gamescreen.isSkillused2()) {
+								RenderableHolder.getInstance().destroyAllscreen(wordInScreen);
+								for (int i = 0; i < wordInScreen.size(); i++) {
+									fireSkill2 = new FireSkill2(wordInScreen.get(i).getX(), wordInScreen.get(i).getY(),
+											wizard.getX(), wizard.getY());
+									RenderableHolder.getInstance().add(fireSkill2);
+									System.out.println("add FireSkill2");
+								}
+								gamescreen.setisSkillused2(true);
 							}
-							gamescreen.setisSkillused2(true);
+						} catch (UsedskillException e) {
+							System.out.println(e.getErrorMessage());
 						}
 					}
 
@@ -131,30 +138,12 @@ public class GameWindow extends Canvas {
 								temp = temp.substring(0, temp.length() - 1);
 							}
 						} else {
-							if (!(KeyEvent.getCode().equals(KeyCode.UP) || KeyEvent.getCode().equals(KeyCode.DOWN)
-									|| KeyEvent.getCode().equals(KeyCode.SHIFT)
-									|| KeyEvent.getCode().equals(KeyCode.LEFT)
-									|| KeyEvent.getCode().equals(KeyCode.RIGHT)
-									|| KeyEvent.getCode().equals(KeyCode.CONTROL)
-									|| KeyEvent.getCode().equals(KeyCode.BACK_SLASH)
-									|| KeyEvent.getCode().equals(KeyCode.ALT)
-									|| KeyEvent.getCode().equals(KeyCode.PAGE_DOWN)
-									|| KeyEvent.getCode().equals(KeyCode.PAGE_UP)
-									|| KeyEvent.getCode().equals(KeyCode.SPACE)
-									|| KeyEvent.getCode().equals(KeyCode.TAB)
-									|| KeyEvent.getCode().equals(KeyCode.ALT_GRAPH)
-									|| KeyEvent.getCode().equals(KeyCode.CAPS) || KeyEvent.getCode().equals(KeyCode.F1)
-									|| KeyEvent.getCode().equals(KeyCode.F2) || KeyEvent.getCode().equals(KeyCode.F3)
-									|| KeyEvent.getCode().equals(KeyCode.F4) || KeyEvent.getCode().equals(KeyCode.F5)
-									|| KeyEvent.getCode().equals(KeyCode.F6) || KeyEvent.getCode().equals(KeyCode.F7)
-									|| KeyEvent.getCode().equals(KeyCode.F8) || KeyEvent.getCode().equals(KeyCode.F9)
-									|| KeyEvent.getCode().equals(KeyCode.F10) || KeyEvent.getCode().equals(KeyCode.F11)
-									|| KeyEvent.getCode().equals(KeyCode.F12)
-									|| KeyEvent.getCode().equals(KeyCode.PAUSE)
-									|| KeyEvent.getCode().equals(KeyCode.INSERT)
-									|| KeyEvent.getCode().equals(KeyCode.HOME) || KeyEvent.getCode().equals(KeyCode.END)
-									|| KeyEvent.getCode().equals(KeyCode.UNDEFINED))) {
-								temp += KeyEvent.getCode().toString();
+							try {
+								if (checkInput(KeyEvent)) {
+									temp += KeyEvent.getCode().toString();
+								}
+							} catch (WrongInputException e) {
+								System.out.println(e.getErrorMessage());
 							}
 						}
 					} else {
@@ -170,7 +159,7 @@ public class GameWindow extends Canvas {
 				if (KeyEvent.getCode().equals(KeyCode.ENTER)) {
 					StartGame startwindow = new StartGame(stage);
 					startwindow.startAnimation();
-					isGameover = false ;
+					isGameover = false;
 				}
 			}
 		});
@@ -179,7 +168,7 @@ public class GameWindow extends Canvas {
 
 	public void addGamescreen() {
 		gamescreen = new GameScreen();
-		gamescreen.setStatus(10, 0); ////// set life and score
+		gamescreen.setStatus(10, 0); // set life and score
 		RenderableHolder.getInstance().add(gamescreen);
 	}
 
@@ -190,7 +179,6 @@ public class GameWindow extends Canvas {
 
 	public void addWord() {
 		for (int i = 0; i < data.length; i++) {
-			// System.out.println(image_path + data[i] + ".png");
 			word = new Word(data[i], image_path + data[i] + ".png", 1);
 			double px = Math.random() * 450;
 			double py = (Math.random() * -2000);
@@ -219,7 +207,6 @@ public class GameWindow extends Canvas {
 		}
 		for (int i = 0; i < special.length; i++) {
 			wordheal = new WordHeal(special[i], image_path_special + special[i] + ".png", 1);
-			// System.out.println(image_path_special + special[i] + ".png");
 			double px = Math.random() * 450;
 			double py = (Math.random() * -2000);
 
@@ -263,7 +250,6 @@ public class GameWindow extends Canvas {
 		if (RenderableHolder.getInstance().isGamefinish()) {
 			gamewindowanimation.stop();
 			RenderableHolder.soundgame.stop();
-			// System.out.println("is Here");
 			if (!RenderableHolder.getInstance().isWinner()) {
 				RenderableHolder.gameover.play();
 				isGameover = true;
@@ -274,13 +260,13 @@ public class GameWindow extends Canvas {
 				isGameover = false;
 				GameFinish.startgamefinish(gc, isGameover, gamescreen);
 				setHighscore();
-				GameFinish.startgamefinish(gc,isGameover,gamescreen);
+				GameFinish.startgamefinish(gc, isGameover, gamescreen);
 			}
-			
+
 			setHighscore();
-			temp = "" ;
+			temp = "";
 			RenderableHolder.getInstance().clear();
-			
+
 		}
 	}
 
@@ -293,5 +279,20 @@ public class GameWindow extends Canvas {
 	public void setSpell() {
 		spell.add(KeyCode.F1);
 		spell.add(KeyCode.F2);
+	}
+
+	public boolean checkInput(KeyEvent k) throws WrongInputException {
+		if (k.getCode().equals(KeyCode.A) || k.getCode().equals(KeyCode.B) || k.getCode().equals(KeyCode.C)
+				|| k.getCode().equals(KeyCode.D) || k.getCode().equals(KeyCode.E) || k.getCode().equals(KeyCode.F)
+				|| k.getCode().equals(KeyCode.G) || k.getCode().equals(KeyCode.H) || k.getCode().equals(KeyCode.I)
+				|| k.getCode().equals(KeyCode.J) || k.getCode().equals(KeyCode.K) || k.getCode().equals(KeyCode.L)
+				|| k.getCode().equals(KeyCode.M) || k.getCode().equals(KeyCode.N) || k.getCode().equals(KeyCode.O)
+				|| k.getCode().equals(KeyCode.P) || k.getCode().equals(KeyCode.Q) || k.getCode().equals(KeyCode.R)
+				|| k.getCode().equals(KeyCode.S) || k.getCode().equals(KeyCode.T) || k.getCode().equals(KeyCode.U)
+				|| k.getCode().equals(KeyCode.V) || k.getCode().equals(KeyCode.W) || k.getCode().equals(KeyCode.X)
+				|| k.getCode().equals(KeyCode.Y) || k.getCode().equals(KeyCode.Z)) {
+			return true;
+		} else
+			throw new WrongInputException();
 	}
 }

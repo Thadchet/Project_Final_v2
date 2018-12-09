@@ -1,6 +1,6 @@
 package Drawing;
 
-import Logic.Wizard;
+import exception.UsedskillException;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -21,7 +21,6 @@ public class GameScreen implements IRenderable {
 	private boolean isSkillused2 = false;
 
 	public GameScreen() {
-		// TODO Auto-generated constructor stub
 		setImage();
 	}
 
@@ -36,7 +35,6 @@ public class GameScreen implements IRenderable {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
 		gc.drawImage(background, 0, 0);
 		Font font = new Font("Agency FB", 30);
 		gc.setFont(font);
@@ -61,13 +59,11 @@ public class GameScreen implements IRenderable {
 
 	@Override
 	public boolean isDestroyed() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean isVisible() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -76,16 +72,22 @@ public class GameScreen implements IRenderable {
 		this.score = score;
 	}
 
-	public boolean isSkillused1() {
-		return isSkillused1;
+	public boolean isSkillused1() throws UsedskillException {
+		if (!isSkillused1) {
+			return isSkillused1;
+		} else
+			throw new UsedskillException();
 	}
 
 	public void setisSkillused1(boolean isSkillused1) {
 		this.isSkillused1 = isSkillused1;
 	}
 
-	public boolean isSkillused2() {
-		return isSkillused2;
+	public boolean isSkillused2() throws UsedskillException {
+		if (!isSkillused2) {
+			return isSkillused2;
+		} else
+			throw new UsedskillException();
 	}
 
 	public void setisSkillused2(boolean isSkillused2) {
