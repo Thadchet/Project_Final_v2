@@ -55,11 +55,11 @@ public class GameScreen implements IRenderable {
 
 		gc.fillText(" x " + life, 470, 50);
 		gc.drawImage(laser, 0, 630, 710, 120);
-		
+
 		Font fontskill = new Font("Agency FB", 15);
 		gc.setFont(fontskill);
-		gc.fillText("F2" , 385, 17);
-		gc.fillText("F1" , 340, 17);
+		gc.fillText("F2", 385, 17);
+		gc.fillText("F1", 340, 17);
 	}
 
 	@Override

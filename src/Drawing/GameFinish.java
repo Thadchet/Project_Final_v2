@@ -148,7 +148,7 @@ public class GameFinish {
 		t3.start();
 		try {
 			t3.join();
-			GameWindow.isCanEnter = true ;
+			GameWindow.isCanEnter = true;
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -161,7 +161,7 @@ public class GameFinish {
 		} else {
 			drawGameWinner(gc, gamescreen);
 		}
-		GameWindow.isCanEnter = false ;
+		GameWindow.isCanEnter = false;
 	}
 
 }

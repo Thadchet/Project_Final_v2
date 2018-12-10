@@ -143,6 +143,8 @@ public class StartGame {
 				if (menuSelected == 1) {
 					next();
 				} else {
+					soundanimation.stop();
+					RenderableHolder.open.stop();
 					Platform.exit();
 				}
 			}

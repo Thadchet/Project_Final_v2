@@ -46,7 +46,7 @@ public class RenderableHolder {
 
 		open = new AudioClip(sound_path + "open.mp3");
 		menu = new AudioClip(sound_path + "switch.mp3");
-		backmenu = new AudioClip(sound_path+"backmenu.mp3");
+		backmenu = new AudioClip(sound_path + "backmenu.mp3");
 		fall = new AudioClip(sound_path + "fall.mp3");
 		wordDead = new AudioClip(sound_path + "wordDead.mp3");
 		gameover = new AudioClip(sound_path + "gameover.mp3");
@@ -209,7 +209,7 @@ public class RenderableHolder {
 							});
 							t.start();
 							wordInScreen.add((Word) i);
-							((GameScreen) g).addScore();	
+							((GameScreen) g).addScore();
 							skill2.play();
 						}
 					}
@@ -232,7 +232,7 @@ public class RenderableHolder {
 							wordInScreen.add((Word) i);
 							((GameScreen) g).addScore();
 							((GameScreen) g).increaseLife();
-							
+
 						}
 					}
 				}
