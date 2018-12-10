@@ -199,18 +199,17 @@ public class RenderableHolder {
 								@Override
 								public void run() {
 									try {
-										Thread.sleep(550);
+										Thread.sleep(350);
 									} catch (InterruptedException e) {
 										e.printStackTrace();
 									}
+									((Word) i).setIsvisible(false);
 									((Word) i).setIsdestroy(true);
 								}
 							});
 							t.start();
 							wordInScreen.add((Word) i);
-							((GameScreen) g).addScore();
-							((Word) i).setIsvisible(false);
-							((Word) i).setIsdestroy(true);
+							((GameScreen) g).addScore();	
 							skill2.play();
 						}
 					}
@@ -220,10 +219,11 @@ public class RenderableHolder {
 								@Override
 								public void run() {
 									try {
-										Thread.sleep(550);
+										Thread.sleep(350);
 									} catch (InterruptedException e) {
 										e.printStackTrace();
 									}
+									((Word) i).setIsvisible(false);
 									((Word) i).setIsdestroy(true);
 									heal.play();
 								}
@@ -232,8 +232,7 @@ public class RenderableHolder {
 							wordInScreen.add((Word) i);
 							((GameScreen) g).addScore();
 							((GameScreen) g).increaseLife();
-							((WordHeal) i).setIsvisible(false);
-							((WordHeal) i).setIsdestroy(true);
+							
 						}
 					}
 				}
