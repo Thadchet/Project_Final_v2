@@ -45,8 +45,9 @@ public class GameWindow extends Canvas {
 	public String image_path = ClassLoader.getSystemResource("ImWord/").toString();
 	public String image_path_special = ClassLoader.getSystemResource("ImWordspecial/").toString();
 	private boolean isGameover;
-	public static boolean isCanEnter ;
+	public static boolean isCanEnter = true;
 	public static int high_score = 0;
+	private boolean repeatedlyenter = false;
 
 	public GameWindow(Stage stage) {
 		this.stage = stage;
@@ -144,14 +145,18 @@ public class GameWindow extends Canvas {
 							} catch (WrongInputException e) {
 								System.out.println(e.getErrorMessage());
 							}
+							repeatedlyenter = false;
 						}
 					} else {
-						word = RenderableHolder.getInstance().check(temp);
-						if (word != null) {
-							fireball = new FireBall(word.getX(), word.getY(), wizard.getX(), wizard.getY());
-							RenderableHolder.getInstance().add(fireball);
+						if (!repeatedlyenter) {
+							word = RenderableHolder.getInstance().check(temp);
+							if (word != null) {
+								fireball = new FireBall(word.getX(), word.getY(), wizard.getX(), wizard.getY());
+								RenderableHolder.getInstance().add(fireball);
+							}
+							temp = "";
+							repeatedlyenter = true;
 						}
-						temp = "";
 					}
 				}
 			} else {
