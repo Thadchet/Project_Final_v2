@@ -204,7 +204,6 @@ public class RenderableHolder {
 										e.printStackTrace();
 									}
 									((Word) i).setIsdestroy(true);
-									heal.play();
 								}
 							});
 							t.start();

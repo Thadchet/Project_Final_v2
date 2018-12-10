@@ -45,6 +45,7 @@ public class GameWindow extends Canvas {
 	public String image_path = ClassLoader.getSystemResource("ImWord/").toString();
 	public String image_path_special = ClassLoader.getSystemResource("ImWordspecial/").toString();
 	private boolean isGameover;
+	public static boolean isCanEnter ;
 	public static int high_score = 0;
 
 	public GameWindow(Stage stage) {
@@ -59,7 +60,6 @@ public class GameWindow extends Canvas {
 		addAll();
 		setSpell();
 		requestFocus();
-
 	}
 
 	public void drawGameWindow() {
@@ -156,10 +156,12 @@ public class GameWindow extends Canvas {
 				}
 			} else {
 				if (KeyEvent.getCode().equals(KeyCode.ENTER)) {
-					StartGame startwindow = new StartGame(stage);
-					startwindow.startAnimation();
-					isGameover = false;
-					RenderableHolder.backmenu.play();
+					if (isCanEnter) {
+						StartGame startwindow = new StartGame(stage);
+						startwindow.startAnimation();
+						isGameover = false;
+						RenderableHolder.backmenu.play();
+					}
 				}
 			}
 		});
@@ -178,6 +180,7 @@ public class GameWindow extends Canvas {
 	}
 
 	public void addWord() {
+
 		for (int i = 0; i < data.length; i++) {
 			word = new Word(data[i], image_path + data[i] + ".png", 1);
 			double px = Math.random() * 450;
@@ -197,7 +200,7 @@ public class GameWindow extends Canvas {
 				py -= 3500;
 			}
 			if (i == data.length - 1) {
-				word.setSpeed(-3);
+				word.setSpeed(-2);
 				py -= 14000;
 			}
 
@@ -266,7 +269,6 @@ public class GameWindow extends Canvas {
 			setHighscore();
 			temp = "";
 			RenderableHolder.getInstance().clear();
-
 		}
 	}
 
